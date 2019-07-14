@@ -1,0 +1,16 @@
+{
+  "name": "digitalzentheme",
+  "version": "1.0.0",
+  "description": "New responsive theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "run"
+  },
+  "keywords": [
+    "Digital",
+    "Zen",
+    "Theme"
+  ],
+  "author": "James John McGuire",
+  "license": "ISC"
+}
