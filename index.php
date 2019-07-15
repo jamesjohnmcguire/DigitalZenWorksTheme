@@ -5,3 +5,7 @@
  * @package WordPress
  * @subpackage digitalzen
  */
+
+$component = 'index';
+
+get_header();
