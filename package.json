@@ -12,5 +12,8 @@
     "Theme"
   ],
   "author": "James John McGuire",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.4"
+  }
 }
