@@ -11,12 +11,12 @@ module.exports = function(grunt)
 			{
 				files:
 				{
-					'style.min.css': ['style.css']
+					'css/index.min.css': ['css.normalize.css', 'css/boilerplate.css']
 				}
 			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.registerTask('default', ["cssmin"]);	
+	grunt.registerTask('default', ["cssmin"]);
 };
