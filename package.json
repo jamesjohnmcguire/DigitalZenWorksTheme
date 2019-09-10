@@ -1,0 +1,27 @@
+{
+  "author": "James John McGuire",
+  "license": "ISC",
+  "name": "digitalzentheme",
+  "version": "1.0.0",
+  "description": "New responsive theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "run"
+  },
+  "keywords": [
+    "Digital",
+    "Zen",
+    "Theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesjohnmcguire/digitalzentheme.git"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
