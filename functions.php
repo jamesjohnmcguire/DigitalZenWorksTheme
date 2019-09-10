@@ -15,3 +15,18 @@ function get_css_file($component)
 
 	return $css_file;
 }
+
+function theme_data($data)
+{
+	static $theme_data = null;
+
+	if (!empty($data))
+	{
+		foreach($data as $key => $item)
+		{
+			$theme_data[$key] = $item;
+		}
+	}
+
+	return $theme_data;
+}

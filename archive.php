@@ -1,11 +1,11 @@
 <?php
 /**
- * The main template file
+ * The template for displaying archive pages
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package DigitalZen
  */
-
-theme_data(array('page_type' => 'index'));
 
 get_header();
 ?>
@@ -16,15 +16,16 @@ get_header();
 <?php
 if (have_posts())
 {
-	if (is_home() && !is_front_page())
-	{
 ?>
-        <header>
-          <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-        </header>
-<?php
-	}
 
+      <header class="page-header">
+<?php
+	the_archive_title('<h1 class="page-title">', '</h1>');
+	the_archive_description('<div class="archive-description">', '</div>');
+?>
+        </header><!-- .page-header -->
+
+<?php
 	// Start the Loop
 	while (have_posts())
 	{
@@ -42,7 +43,7 @@ if (have_posts())
 }
 else
 {
-	get_template_part('template-parts/content', 'none');
+	get_template_part( 'template-parts/content', 'none' );
 }
 ?>
 
