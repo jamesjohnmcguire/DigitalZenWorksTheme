@@ -1,6 +1,6 @@
 === Digital Zen ===
 
-Contributors: automattic
+Contributors: html5-boilerplate, automattic
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 
 Requires at least: 4.5
@@ -9,11 +9,11 @@ Stable tag: 1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
-A starter theme called Digital Zen.
+A theme called Digital Zen.
 
 == Description ==
 
-Hey, Hey!
+Responsive theme for business oriented presentational sites.
 
 == Installation ==
 
@@ -29,10 +29,12 @@ Digital Zen includes support for Infinite Scroll in Jetpack.
 
 == Changelog ==
 
-= 1.0 - May 12 2015 =
+= 1.0 - September 12 2019 =
 * Initial release
 
 == Credits ==
 
+* Based on the html5 boiler plate project: https://html5boilerplate.com/ 2019
 * Based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
 * normalize.css https://necolas.github.io/normalize.css/, (C) 2012-2016 Nicolas Gallagher and Jonathan Neal, [MIT](https://opensource.org/licenses/MIT)
+
