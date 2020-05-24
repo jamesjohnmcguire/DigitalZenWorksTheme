@@ -32,7 +32,7 @@ else
 	defined('ENVIRONMENT') OR define('ENVIRONMENT', 'production');
 }
 
-$data = theme_data(null);
+$data = digitalzen_theme_data(null);
 $component = $data['page_type'];
 
 $language = 'en';
