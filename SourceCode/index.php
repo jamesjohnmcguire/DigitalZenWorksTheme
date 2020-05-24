@@ -5,7 +5,7 @@
  * @package DigitalZen
  */
 
-theme_data(array('page_type' => 'index'));
+digitalzen_theme_data(array('page_type' => 'index'));
 
 get_header();
 ?>

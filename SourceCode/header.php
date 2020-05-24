@@ -38,7 +38,7 @@ $component = $data['page_type'];
 $language = 'en';
 $title = 'Digital Zen';
 $description = 'New theme';
-$css_file = get_css_file($component);
+$css_file = digitalzen_get_css_file($component);
 
 ?>
 <!doctype html>
