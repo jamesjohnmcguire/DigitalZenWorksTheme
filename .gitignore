@@ -4,3 +4,5 @@ vendor
 !js/vendor/
 
 **.css.map
+
+/SourceCode/assets/css/*.css
