@@ -6,3 +6,6 @@ vendor
 **.css.map
 
 /SourceCode/assets/css/*.css
+
+/SourceCode/.git.test
+/SourceCode/.gitignore.test
