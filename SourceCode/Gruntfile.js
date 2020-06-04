@@ -8,7 +8,7 @@ module.exports = function(grunt)
 			{
 				files:
 				{
-					'css/common.css': 'css/common.scss'
+					'assets/css/common.css': 'assets/css/common.scss'
 				}
 			}
 		},
@@ -21,7 +21,7 @@ module.exports = function(grunt)
 			{
 				files:
 				{
-					'css/index.min.css': ['css.normalize.css', 'css/boilerplate.css']
+					'assets/css/index.min.css': ['assets/css/source/normalize.css', 'assets/css/source/boilerplate.css']
 				}
 			}
 		},
