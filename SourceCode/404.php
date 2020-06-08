@@ -15,11 +15,11 @@ get_header();
 
       <section class="error-404 not-found">
         <header class="page-header">
-          <h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'digitalzen' ); ?></h1>
+          <h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'digital-zen' ); ?></h1>
         </header><!-- .page-header -->
 
         <div class="page-content">
-          <p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'digitalzen' ); ?></p>
+          <p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'digital-zen' ); ?></p>
 
 <?php
 get_search_form();
@@ -28,7 +28,7 @@ the_widget('WP_Widget_Recent_Posts');
 ?>
 
           <div class="widget widget_categories">
-            <h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'digitalzen' ); ?></h2>
+            <h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'digital-zen' ); ?></h2>
             <ul>
 <?php
 wp_list_categories(array(
@@ -44,7 +44,7 @@ wp_list_categories(array(
 
 <?php
 /* translators: %1$s: smiley */
-$digitalzen_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'digitalzen' ), convert_smilies( ':)' ) ) . '</p>';
+$digitalzen_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'digital-zen' ), convert_smilies( ':)' ) ) . '</p>';
 the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$digitalzen_archive_content" );
 
 the_widget( 'WP_Widget_Tag_Cloud' );

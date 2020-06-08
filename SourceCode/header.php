@@ -67,7 +67,7 @@ $css_file = digitalzen_get_css_file($component);
   <![endif]-->
 
   <div id="page" class="site">
-    <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'digitalzen' ); ?></a>
+    <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'digital-zen' ); ?></a>
 
     <header id="masthead" class="site-header">
       <div class="site-branding">
@@ -98,7 +98,7 @@ if ($digitalzen_description || is_customize_preview())
       </div><!-- .site-branding -->
 
     <nav id="site-navigation" class="main-navigation">
-      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'digitalzen' ); ?></button>
+      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'digital-zen' ); ?></button>
 <?php
 wp_nav_menu(array(
 	'theme_location' => 'menu-1',
