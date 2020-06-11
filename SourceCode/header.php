@@ -11,25 +11,25 @@
 
 if ((PHP_SAPI == 'cli') || (!array_key_exists("SERVER_NAME", $_SERVER)))
 {
-	// running on command line, possibly from CRON
-	// $_SERVER["SERVER_NAME"] won't be set
-	// cron jobs should have predefined this.
-	defined('WP_DEBUG') OR define('WP_DEBUG', true);
-	defined('ENVIRONMENT') OR define('ENVIRONMENT', 'development');
+    // running on command line, possibly from CRON
+    // $_SERVER["SERVER_NAME"] won't be set
+    // cron jobs should have predefined this.
+    defined('WP_DEBUG') OR define('WP_DEBUG', true);
+    defined('ENVIRONMENT') OR define('ENVIRONMENT', 'development');
 }
 else
 {
-	defined('WP_DEBUG') OR define('WP_DEBUG', false);
-	defined('ENVIRONMENT') OR define('ENVIRONMENT', 'production');
+    defined('WP_DEBUG') OR define('WP_DEBUG', false);
+    defined('ENVIRONMENT') OR define('ENVIRONMENT', 'production');
 }
 
 if (WP_DEBUG == true)
 {
-	defined('ENVIRONMENT') OR define('ENVIRONMENT', 'development');
+    defined('ENVIRONMENT') OR define('ENVIRONMENT', 'development');
 }
 else
 {
-	defined('ENVIRONMENT') OR define('ENVIRONMENT', 'production');
+    defined('ENVIRONMENT') OR define('ENVIRONMENT', 'production');
 }
 
 $data = digitalzen_theme_data(null);
@@ -101,8 +101,8 @@ if ($digitalzen_description || is_customize_preview())
       <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'digital-zen' ); ?></button>
 <?php
 wp_nav_menu(array(
-	'theme_location' => 'menu-1',
-	'menu_id'        => 'primary-menu',
+    'theme_location' => 'menu-1',
+    'menu_id'        => 'primary-menu',
 ));
 ?>
     </nav><!-- #site-navigation -->
