@@ -1,7 +1,3 @@
-
-	
-define( 'WP_DEBUG_LOG', true );
-define( 'WP_DEBUG_DISPLAY', true );
 https://wordpress.org/plugins/query-monitor/
 	
 https://github.com/Varying-Vagrant-Vagrants/VVV
@@ -13,28 +9,26 @@ https://make.wordpress.org/themes/handbook/review/required/
 https://make.wordpress.org/themes/2013/11/10/guidelines-shouldnt-fail-a-theme/
 https://make.wordpress.org/core/handbook/best-practices/coding-standards/
 
-wordpress theme development
-	https://developer.wordpress.org/themes/getting-started/
-	https://developer.wordpress.org/themes/getting-started/theme-development-examples/
-	http://underscores.me/
-	https://developer.wordpress.com/themes/
-	https://make.wordpress.org/themes/handbook/review/required/
-	https://codex.wordpress.org/Theme_Unit_Test
-	https://www.taniarascia.com/developing-a-wordpress-theme-from-scratch/
+https://developer.wordpress.org/themes/getting-started/
+https://developer.wordpress.org/themes/getting-started/theme-development-examples/
+http://underscores.me/
+https://developer.wordpress.com/themes/
+https://make.wordpress.org/themes/handbook/review/required/
+https://codex.wordpress.org/Theme_Unit_Test
+https://www.taniarascia.com/developing-a-wordpress-theme-from-scratch/
 
-	language_attributes() vs my language functions
-	bloginfo( 'charset' ); vs utf-8
-	Merge ALL css into one file
+language_attributes() vs my language functions
+bloginfo( 'charset' ); vs utf-8
+Merge ALL css into one file
 
-	#0 require_once() called at [C:\Util\xampp\htdocs\wp\wp-includes\template.php:722]
-	#1 load_template() called at [C:\Util\xampp\htdocs\wp\wp-includes\template.php:671]
-	#2 locate_template() called at [C:\Util\xampp\htdocs\wp\wp-includes\general-template.php:41] 
-	#3 get_header() called at [C:\Util\xampp\htdocs\wp\wp-content\themes\DigitalZen\index.php:10]
-	#4 include(C:\Util\xampp\htdocs\wp\wp-content\themes\DigitalZen\index.php) called at [C:\Util\xampp\htdocs\wp\wp-includes\template-loader.php:78]
-	#5 require_once(C:\Util\xampp\htdocs\wp\wp-includes\template-loader.php) called at [C:\Util\xampp\htdocs\wp\wp-blog-header.php:19]
-	#6 require(C:\Util\xampp\htdocs\wp\wp-blog-header.php) called at [C:\Util\xampp\htdocs\index.php:17]
+#0 require_once() called at [C:\Util\xampp\htdocs\wp\wp-includes\template.php:722]
+#1 load_template() called at [C:\Util\xampp\htdocs\wp\wp-includes\template.php:671]
+#2 locate_template() called at [C:\Util\xampp\htdocs\wp\wp-includes\general-template.php:41] 
+#3 get_header() called at [C:\Util\xampp\htdocs\wp\wp-content\themes\DigitalZen\index.php:10]
+#4 include(C:\Util\xampp\htdocs\wp\wp-content\themes\DigitalZen\index.php) called at [C:\Util\xampp\htdocs\wp\wp-includes\template-loader.php:78]
+#5 require_once(C:\Util\xampp\htdocs\wp\wp-includes\template-loader.php) called at [C:\Util\xampp\htdocs\wp\wp-blog-header.php:19]
+#6 require(C:\Util\xampp\htdocs\wp\wp-blog-header.php) called at [C:\Util\xampp\htdocs\index.php:17]
 
-	( ! ) Notice: Undefined variable: component in C:\Util\xampp\htdocs\wp\wp-content\themes\DigitalZen\header.php on line 41
+( ! ) Notice: Undefined variable: component in C:\Util\xampp\htdocs\wp\wp-content\themes\DigitalZen\header.php on line 41
 
-Theme Development
-	https://github.com/Automattic/_s
+https://github.com/Automattic/_s
