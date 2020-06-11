@@ -10,7 +10,7 @@ ECHO outdated:
 CALL composer outdated
 
 ECHO Code analysis:
-CALL vendor\bin\phpcs -s --standard=ruleset.xml --ignore=vendor/ --ignore=node_modules/ .
+CALL sniff.cmd
 
 REM CALL vendor\bin\phpunit -c UnitTests\phpunit.xml --bootstrap .\includes\autoload.php UnitTests\UnitTests.php
 
