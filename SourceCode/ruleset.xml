@@ -1,30 +1,111 @@
 <?xml version="1.0"?>
 <ruleset name="Custom Standard">
 
-    <description>PHP 7+ coding standards for projects.</description>
+	<description>PHP 7+ coding standards for projects.</description>
+	<config name="CodeAnalysis" value="7.0-"/>
 
-    <config name="testVersion" value="7.0-"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
 
-    <arg name="colors"/>
-    <arg value="sp"/>
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="180"/>
+			<property name="absoluteLineLimit" value="0"/>
+		</properties>
+	</rule>
 
 	<rule ref="PSR2">
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
 		<!--exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/-->
+		<exclude name="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket"/>
+		<exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket"/>
 		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
 		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
 		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
 	</rule>
-	<!--rule ref="Generic.Files.LineLength">
-		<properties>
-			<property name="lineLimit" value="170"/>
-			<property name="absoluteLineLimit" value="0"/>
-		</properties>
+
+	<!--rule ref="PHPCompatibilityWP">
+		<include-pattern>*\.php$</include-pattern>
 	</rule-->
-	<!--rule ref="vendor/codeigniter4/codeigniter4-standard/CodeIgniter4"/-->
-	<rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman">
+
+	<!--
+	Some WordPress specific rules.
+	See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards
+	-->
+	 <rule ref="WordPress">
+		<!--exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found"/-->
+	 </rule>
+
+    <rule ref="WordPress-Core" />
+    <rule ref="WordPress-Docs" />
+    <rule ref="WordPress-Extra" />
+
+	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="checkFunctions" value="true" />
-			<property name="checkClosures" value="true" />
+			<property name="text_domain" type="array" value="digital-zen"/>
 		</properties>
 	</rule>
+
+	<!--rule ref="WordPress.VIP.SessionVariableUsage"/>
+	<rule ref="WordPress.VIP.SessionFunctionsUsage"/>
+	<rule ref="WordPress.VIP.SuperGlobalInputUsage"/>
+	<rule ref="WordPress.VIP.ValidatedSanitizedInput"/>
+	<rule ref="WordPress.XSS.EscapeOutput"/>
+	<rule ref="WordPress.CSRF.NonceVerification"/-->
+	<rule ref="WordPress.WP.AlternativeFunctions.curl"/>
+	<rule ref="WordPress.WP.DiscouragedConstants"/>
+
+	<rule ref="WordPress.Arrays.CommaAfterArrayItem"/>
+	<rule ref="WordPress.PHP.StrictComparisons"/>
+	<rule ref="WordPress.PHP.StrictInArray"/>
+	<rule ref="WordPress.PHP.POSIXFunctions"/>
+	<rule ref="WordPress.PHP.RestrictedPHPFunctions"/>
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions">
+		<properties>
+			<property name="exclude" value="serialize"/>
+			<property name="exclude" value="urlencode"/>
+			<property name="exclude" value="obfuscation"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration">
+		<type>error</type>
+	</rule>
+	<rule ref="WordPress.PHP.DevelopmentFunctions"/>
+	<rule ref="WordPress.PHP.DevelopmentFunctions.error_log">
+		<type>error</type>
+	</rule>
+	<rule ref="WordPress.PHP.DevelopmentFunctions.prevent_path_disclosure">
+		<type>error</type>
+	</rule>
+
+	<!--
+	Generic
+	-->
+	<rule ref="Generic.Metrics.CyclomaticComplexity">
+		<properties>
+			<property name="absoluteComplexity" value="50"/>
+		</properties>
+	</rule>
+	<rule ref="Generic.Metrics.NestingLevel">
+		<properties>
+			<property name="nestingLevel" value="2"/>
+			<property name="absoluteNestingLevel" value="4"/>
+		</properties>
+	</rule>
+	<rule ref="Generic.NamingConventions.ConstructorName"/>
+	<rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
+	<rule ref="Generic.PHP.LowerCaseConstant"/>
+	<rule ref="Squiz.Classes.LowercaseClassKeywords"/>
+	<rule ref="Squiz.PHP.CommentedOutCode">
+		<properties>
+			<property name="maxPercentage" value="45"/>
+		</properties>
+	</rule>
+	<rule ref="Squiz.PHP.Eval"/>
+	<rule ref="Squiz.PHP.InnerFunctions"/>
+	<rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+	<rule ref="Squiz.PHP.NonExecutableCode"/>
+	<rule ref="Squiz.Scope.MemberVarScope"/>
+	<rule ref="Squiz.Scope.StaticThisUsage"/>
 </ruleset>
