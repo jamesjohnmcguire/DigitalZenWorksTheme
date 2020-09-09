@@ -1,7 +1,4 @@
-https://wordpress.org/plugins/query-monitor/
-	
-https://github.com/Varying-Vagrant-Vagrants/VVV
-https://codex.wordpress.org/Theme_Unit_Test
+
 https://themetest.wordpress.com/
 
 https://developer.wordpress.com/themes/
@@ -32,3 +29,109 @@ Merge ALL css into one file
 ( ! ) Notice: Undefined variable: component in C:\Util\xampp\htdocs\wp\wp-content\themes\DigitalZen\header.php on line 41
 
 https://github.com/Automattic/_s
+
+WordPress
+	Themes
+		Start from
+			Bootstrap	Far from perfect, lots of warnings
+				Dzw-Bootstrap-Child
+
+				Psynary
+				Inferret
+				Start from _s?	I think too much work in the given timeframe
+				DigitalZen	Just too much in infancy
+				Dzw-Custom
+			Plan
+				Start with pure html file prototype.html
+					test mobile
+				Then integrate into WordPress
+	Theme Development
+		https://www.smashingmagazine.com/2016/01/create-customize-wordpress-child-theme/
+		https://my.studiopress.com/themes/genesis/
+		CustomLogo
+			Install
+				The custom logo support should be added first to your theme using add_theme_support(), and then be called in your theme using the_custom_logo()
+
+				To enable the use of a custom logo in your theme, add the following to your functions.php file:
+					add_theme_support( 'custom-logo' );
+					function themename_custom_logo_setup() {
+					 $defaults = array(
+					 'height'      => 100,
+					 'width'       => 400,
+					 'flex-height' => true,
+					 'flex-width'  => true,
+					 'header-text' => array( 'site-title', 'site-description' ),
+					 );
+					 add_theme_support( 'custom-logo', $defaults );
+					}
+					add_action( 'after_setup_theme', 'themename_custom_logo_setup' );
+			Display
+			$custom_logo_id = get_theme_mod( 'custom_logo' );
+			$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+			echo $image[0];
+
+			if ( function_exists( 'the_custom_logo' ) ) {
+			 the_custom_logo();
+			}
+		Child Themes
+			https://www.smashingmagazine.com/2016/01/create-customize-wordpress-child-theme/
+	Theme
+		Sections
+			Infrastructure
+			Core Functionality
+			Merging of other themes
+			Testing, Polishing, Validation of requirements
+			Enhancements, Optimizations
+			Publish	On Github, WordPress
+	Themes
+		Make New Theme Repo
+			Create GitHub repo
+			Add theme to wps structure
+			npm init
+			npm install grunt --save-dev
+			gitignore vendor & node_modules
+			git add package-lock.json package.json
+			copy style.css
+			edit style.css comments
+			Create index.php
+			Edit index.php comments
+			npm install grunt-contrib-cssmin --save-dev
+			Edit Gruntfile.js to include cssmin	Added repository info, moved author and license to top, added grunt-contrib-cssmin.
+			create build.cmd
+			Add grunt cssmin to build
+			build.cmd
+			Create common.scss
+			Copy normalize.css from boilerplate
+			Copy and rename boilerplate.css from boilerplate
+			Copy and rename boilerplate.css from boilerplate
+			Copy modernizer.js from boilerplate
+			Update .gitignore to !js/vendor/
+			npm install grunt-contrib-sass --save-dev
+			npm install grunt-contrib-uglify --save-dev
+			npm install grunt-contrib-watch --save-dev
+			Create header.php
+			edit Gruntfile.js to include sass	  <link rel="stylesheet" href="<?php echo $theme_directory; ?>/css/normalize.css">
+			Merge in boilerplate	Header
+			Merge in boilerplate	Footer
+			edit build.cmd to include grunt sass
+			Merge in boilerplate	css
+			Merge in boilerplate	js
+		composer require --dev dealerdirect/phpcodesniffer-composer-installer
+	Themes
+		Language Activation
+			#qtransLangSw?AL&title=none&flags=all&names=hidden&current=hidden
+			#qtransLangSw?title=none&names=hidden&current=hidden
+			Activated qTranslate-Xt plugin	**Manual step
+			Set plugin settings	**Manual step
+				languages
+				permalinks
+				?
+			Edit theme for menu support
+			Added customization from admin	**Manual step
+
+			Edit theme for menu override support
+		Tasks
+			themes	figure out why show_main_menu is always false
+			Themes	Review mujin.ai about menu support
+			Themes	Find a way to export / import plugin settings
+			Themes	Find a way to export / import customization settings
