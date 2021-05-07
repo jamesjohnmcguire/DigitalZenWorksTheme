@@ -11,7 +11,7 @@
 		"php": ">=7.0"
 	},
 	"require-dev": {
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
 		"phpcompatibility/php-compatibility": "*",
 		"phpunit/phpunit": "^9.1",
 		"squizlabs/php_codesniffer": "*",
