@@ -1,0 +1,19 @@
+{
+  "name": "@digitalzenworks/digitalzentheme",
+  "version": "0.1.1",
+  "description": "A WordPress parent theme.",
+  "main": "index.php",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitbub.com/jamesjohnmcguire/DigitalZenWorksTheme.git"
+  },
+  "keywords": [
+    "wordpress",
+    "theme"
+  ],
+  "author": "JamesMc <jamesjohnmcguire@gmail.com>",
+  "license": "MIT"
+}
