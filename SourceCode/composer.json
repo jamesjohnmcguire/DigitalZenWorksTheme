@@ -1,0 +1,16 @@
+{
+    "name": "digitalzenworks/digitalzentheme",
+    "description": "A WordPress parent theme.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JamesMc",
+            "email": "jamesjohnmcguire@gmail.com"
+        }
+    ],
+    "prefer-stable" : true,
+    "require": {
+        "php": ">=7.2"
+    }
+}
