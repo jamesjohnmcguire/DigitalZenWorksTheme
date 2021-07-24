@@ -1,47 +1,55 @@
 {
-  "name": "@digitalzenworks/digitalzentheme",
-  "version": "0.1.1",
-  "description": "A WordPress parent theme.",
-  "main": "index.php",
-  "scripts": {
-    "test": "test"
-  },
-  "keywords": [
-    "WordPress",
-    "Theme"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://gitbub.com/jamesjohnmcguire/DigitalZenWorksTheme.git"
-  },
-  "author": "JamesMc <jamesjohnmcguire@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "grunt": "^1.4.1",
-    "@wordpress/scripts": "^12.1.0",
-    "dir-archiver": "^1.1.1",
-    "node-sass": "^4.14.1",
-    "rtlcss": "^2.5.0"
-  },
-  "rtlcssConfig": {
-    "options": {
-      "autoRename": false,
-      "autoRenameStrict": false,
-      "blacklist": {},
-      "clean": true,
-      "greedy": false,
-      "processUrls": false,
-      "stringMap": []
-    },
-    "plugins": [],
-    "map": false
-  },
-  "scripts": {
-    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
-    "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
-    "compile:rtl": "rtlcss style.css style-rtl.css",
-    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
-    "lint:js": "wp-scripts lint-js 'js/*.js'",
-    "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map"
-  }
+	"author": "JamesMc <jamesjohnmcguire@gmail.com>",
+	"description": "A WordPress parent theme.",
+	"license": "MIT",
+	"main": "index.php",
+	"name": "@digitalzenworks/digitalzentheme",
+	"version": "0.1.1",
+	"keywords":
+	[
+		"WordPress",
+		"Theme"
+	],
+	"repository":
+	{
+		"type": "git",
+		"url": "https://gitbub.com/jamesjohnmcguire/DigitalZenWorksTheme.git"
+	},
+	"devDependencies":
+	{
+		"dir-archiver": "^1.1.1",
+		"grunt": "^1.4.1",
+		"grunt-contrib-cssmin": "^4.0.0",
+		"grunt-contrib-sass": "^2.0.0",
+		"grunt-contrib-uglify": "^5.0.1",
+		"grunt-contrib-watch": "^1.1.0",
+		"node-sass": "^4.14.1",
+		"rtlcss": "^2.5.0",
+		"@wordpress/scripts": "^12.1.0"
+	},
+	"rtlcssConfig":
+	{
+		"options":
+		{
+			"autoRename": false,
+			"autoRenameStrict": false,
+			"blacklist": {},
+			"clean": true,
+			"greedy": false,
+			"processUrls": false,
+			"stringMap": []
+		},
+		"plugins": [],
+		"map": false
+	},
+	"scripts":
+	{
+		"bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map",
+		"compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
+		"compile:rtl": "rtlcss style.css style-rtl.css",
+		"lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
+		"lint:js": "wp-scripts lint-js 'js/*.js'",
+		"test": "test",
+		"watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w"
+	}
 }
