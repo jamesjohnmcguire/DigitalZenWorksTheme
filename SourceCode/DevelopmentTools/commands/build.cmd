@@ -29,7 +29,7 @@ CD ..
 
 IF EXIST DigitalZenTheme.zip DEL /Q DigitalZenTheme.zip
 
-7z a DigitalZenTheme.zip . -xr!.editorconfig -xr!composer.* -xr!Gruntfile.* -xr!package.* -xr!package-lock.* -x!node_modules -x!vendor.bak
+7z a DigitalZenTheme.zip . -xr!.editorconfig -xr!composer.* -xr!Gruntfile.js -xr!uleset.xml -xr!package.* -xr!package-lock.* -xr!DevelopmentTools -x!node_modules -x!vendor.bak
 
 REN vendor vendor.export
 REN vendor.bak vendor
