@@ -5,7 +5,9 @@
 	<arg value="sp"/>
 	<config name="testVersion" value="7.0-"/>
 	<description>PHP 7+ coding standards for projects.</description>
+	<exclude-pattern>node_modules</exclude-pattern>
 	<exclude-pattern>vendor</exclude-pattern>
+	<exclude-pattern>vendor.export</exclude-pattern>
 
 	<rule ref="Generic.Files.LineLength">
 		<properties>
