@@ -13,16 +13,16 @@
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'digitalzen' ) ); ?>">
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'digital-zen' ) ); ?>">
 				<?php
 				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'digitalzen' ), 'WordPress' );
+				printf( esc_html__( 'Proudly powered by %s', 'digital-zen' ), 'WordPress' );
 				?>
 			</a>
 			<span class="sep"> | </span>
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'digitalzen' ), 'digitalzen', '<a href="https://digitalzenworks.com">James John McGuire</a>' );
+				printf( esc_html__( 'Theme: %1$s by %2$s.', 'digital-zen' ), 'digital-zen', '<a href="https://digitalzenworks.com">James John McGuire</a>' );
 				?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->

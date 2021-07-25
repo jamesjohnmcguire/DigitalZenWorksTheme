@@ -25,9 +25,9 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on DigitalZen, use a find and replace
-		 * to change 'digitalzen' to the name of your theme in all the template files.
+		 * to change 'digital-zen' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'digitalzen', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'digital-zen', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -50,7 +50,7 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'digitalzen' ),
+				'menu-1' => esc_html__( 'Primary', 'digital-zen' ),
 			)
 		);
 
@@ -124,9 +124,9 @@ add_action( 'after_setup_theme', 'digitalzen_content_width', 0 );
 function digitalzen_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'digitalzen' ),
+			'name'          => esc_html__( 'Sidebar', 'digital-zen' ),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'digitalzen' ),
+			'description'   => esc_html__( 'Add widgets here.', 'digital-zen' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
