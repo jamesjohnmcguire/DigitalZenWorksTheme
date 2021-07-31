@@ -22,6 +22,13 @@
 		"phpcompatibility/php-compatibility": "*",
 		"phpstan/phpstan": "^0.12.87",
 		"squizlabs/php_codesniffer": "*",
-		"wp-coding-standards/wpcs": "*"
+		"wp-cli/i18n-command": "^2.2.5",
+		"wp-coding-standards/wpcs": "*",
+		"wptrt/wpthemereview": "^0.2.1"
+	},
+	"scripts": {
+		"lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"lint:php": "@php ./vendor/bin/parallel-lint --exclude node_modules --exclude vendor --exclude vendor.export --exclude Gruntfile.js .",
+		"make-pot": "wp i18n make-pot . languages/digitalzen.pot"
 	}
 }
