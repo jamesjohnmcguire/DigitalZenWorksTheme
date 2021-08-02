@@ -5,32 +5,30 @@
 	"main": "index.php",
 	"name": "@digitalzenworks/digitalzentheme",
 	"version": "0.1.1",
-	"keywords":
-	[
+	"keywords": [
 		"WordPress",
 		"Theme"
 	],
-	"repository":
-	{
+	"repository": {
 		"type": "git",
 		"url": "https://gitbub.com/jamesjohnmcguire/DigitalZenWorksTheme.git"
 	},
-	"devDependencies":
-	{
+	"dependencies": {
+	},
+	"devDependencies": {
 		"dir-archiver": "^1.1.1",
 		"grunt": "^1.4.1",
 		"grunt-contrib-cssmin": "^4.0.0",
 		"grunt-contrib-sass": "^2.0.0",
 		"grunt-contrib-uglify": "^5.0.1",
 		"grunt-contrib-watch": "^1.1.0",
-		"node-sass": "^4.14.1",
+		"node-sass": "^6.0.1",
 		"rtlcss": "^2.5.0",
-		"@wordpress/scripts": "^12.1.0"
+		"stylelint-config-wordpress": "^17.0.0",
+		"@wordpress/scripts": "^17.1.0"
 	},
-	"rtlcssConfig":
-	{
-		"options":
-		{
+	"rtlcssConfig": {
+		"options": {
 			"autoRename": false,
 			"autoRenameStrict": false,
 			"blacklist": {},
@@ -42,10 +40,9 @@
 		"plugins": [],
 		"map": false
 	},
-	"scripts":
-	{
+	"scripts": {
 		"bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map",
-		"compile:css": "node-sass assets/css/sass/ -o assets/css && stylelint 'assets/css/*.css' --fix || true && stylelint '*.css' --fix",
+		"compile:css": "node-sass assets/css/sass/ -o assets/css && stylelint assets/css/*.css --fix || true && stylelint '*.css' --fix",
 		"compile:rtl": "rtlcss style.css style-rtl.css",
 		"lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
 		"lint:js": "wp-scripts lint-js 'js/*.js'",
