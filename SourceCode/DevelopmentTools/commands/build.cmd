@@ -13,7 +13,8 @@ ECHO PHP code styles
 CALL vendor\bin\phpcs -sp --standard=ruleset.xml .
 
 :deploy
-CALL grunt sass
+REM CALL grunt sass
+CALL npm run compile:css
 CALL grunt cssmin
 CALL grunt uglify
 REM CALL grunt watch
