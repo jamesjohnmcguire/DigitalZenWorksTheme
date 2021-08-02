@@ -12,6 +12,10 @@ module.exports = function(grunt)
 			{
 				files:
 				{
+					'assets/css/min/default.min.css':
+					[
+						'assets/css/style.css'
+					]
 				}
 			}
 		},
@@ -39,6 +43,7 @@ module.exports = function(grunt)
 			{
 				files:
 				{
+					'js/min/default.min.js': ['assets/js/customizer.js', 'assets/js/navigation.js']
 				}
 			}
 		},
