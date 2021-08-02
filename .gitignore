@@ -2,4 +2,7 @@ SourceCode/node_modules
 SourceCode/vendor
 SourceCode/vendor.export
 
+SourceCode/assets/css/*.css
+SourceCode/assets/css/min/*.css
+
 SourceCode/DigitalZenTheme.zip
