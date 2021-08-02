@@ -8,6 +8,7 @@
 	<exclude-pattern>node_modules</exclude-pattern>
 	<exclude-pattern>vendor</exclude-pattern>
 	<exclude-pattern>vendor.export</exclude-pattern>
+	<exclude-pattern>Gruntfile.js</exclude-pattern>
 
 	<rule ref="Generic.Files.LineLength">
 		<properties>

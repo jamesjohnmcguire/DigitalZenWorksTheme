@@ -1,26 +1,27 @@
 {
-    "name": "digitalzenworks/digitalzentheme",
-    "description": "A WordPress parent theme.",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "JamesMc",
-            "email": "jamesjohnmcguire@gmail.com"
-        }
-    ],
-    "prefer-stable" : true,
-    "require": {
-        "php": ">=7.2"
-    },
+	"name": "digitalzenworks/digitalzentheme",
+	"description": "A WordPress parent theme.",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "JamesMc",
+			"email": "jamesjohnmcguire@gmail.com"
+		}
+	],
+	"prefer-stable" : true,
+	"require": {
+		"php": ">=7.2"
+	},
 	"require-dev": {
 		"10up/wp_mock": "^0.4.2",
 		"brain/monkey": "^2.4",
 		"dealerdirect/phpcodesniffer-composer-installer": "*",
-		"phpunit/phpunit": "^9.1",
-		"phpcsstandards/phpcsdevtools": "^1.0",
+		"php-parallel-lint/php-parallel-lint": "^1.2.0",
 		"phpcompatibility/php-compatibility": "*",
+		"phpcsstandards/phpcsdevtools": "^1.0",
 		"phpstan/phpstan": "^0.12.87",
+		"phpunit/phpunit": "^9.1",
 		"squizlabs/php_codesniffer": "*",
 		"wp-cli/i18n-command": "^2.2.5",
 		"wp-coding-standards/wpcs": "*",
