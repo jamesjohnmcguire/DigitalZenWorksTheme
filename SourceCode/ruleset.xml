@@ -2,12 +2,31 @@
 <ruleset name="Custom Standard">
 
 	<arg name="colors"/>
-	<arg value="sp"/>
+
+	<!-- Pass some flags to PHPCS:
+		 p flag: Show progress of the run.
+		 s flag: Show sniff codes in all reports.
+	-->
+	<arg value="ps"/>
 	<config name="testVersion" value="7.0-"/>
-	<description>PHP 7+ coding standards for projects.</description>
+	<description>A custom set of code standard rules to check for WordPress themes.</description>
+
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="./"/>
+
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+
+	<!-- Check all files in this directory and the directories below it. -->
+	<file>.</file>
+
 	<exclude-pattern>node_modules</exclude-pattern>
 	<exclude-pattern>vendor</exclude-pattern>
 	<exclude-pattern>vendor.export</exclude-pattern>
+	<exclude-pattern>Gruntfile.js</exclude-pattern>
+
+	<rule ref="WordPress" />
+	<rule ref="WPThemeReview"/>
 
 	<rule ref="Generic.Files.LineLength">
 		<properties>
@@ -27,5 +46,28 @@
 			<property name="text_domain" type="array" value="digital-zen"/>
 		</properties>
 	</rule>
+	<config name="minimum_supported_wp_version" value="4.5"/>
+
+	<rule ref="WordPress.Arrays.MultipleStatementAlignment">
+		<properties>
+			<!-- No need to adjust alignment of large arrays when the item with the largest key is removed. -->
+			<property name="exact" value="false"/>
+			<!-- Don't align multi-line items if ALL items in the array are multi-line. -->
+			<property name="alignMultilineItems" value="!=100"/>
+			<!-- Array assignment operator should always be on the same line as the array key. -->
+			<property name="ignoreNewlines" value="false"/>
+		</properties>
+	</rule>
+
+	<!-- Verify that everything in the global namespace is prefixed with a theme specific prefix.
+		 Multiple valid prefixes can be provided as a comma-delimited list. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array" value="digital-zen" />
+		</properties>
+	</rule>
+
+	<config name="testVersion" value="5.6-"/>
+	<rule ref="PHPCompatibilityWP"/>
 
 </ruleset>
