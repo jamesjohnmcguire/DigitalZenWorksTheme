@@ -23,6 +23,7 @@
 		"grunt-contrib-uglify": "^5.0.1",
 		"grunt-contrib-watch": "^1.1.0",
 		"node-sass": "^6.0.1",
+		"parcel-bundler": "^1.12.4",
 		"rtlcss": "^2.5.0",
 		"stylelint-config-wordpress": "^17.0.0",
 		"@wordpress/scripts": "^17.1.0"
@@ -41,11 +42,14 @@
 		"map": false
 	},
 	"scripts": {
+		"build": "parcel build index.html",
 		"bundle": "dir-archiver --src . --dest DigitalZenTheme.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist assets/css/sass style.css.map",
 		"compile:css": "node-sass assets/css/sass/ -o assets/css && stylelint assets/css/*.css --fix || true && stylelint '*.css' --fix",
 		"compile:rtl": "rtlcss style.css style-rtl.css",
+		"dev": "parcel index.html --open",
 		"lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
 		"lint:js": "wp-scripts lint-js 'js/*.js'",
+		"start": "npm run build && npm run dev",
 		"test": "test",
 		"watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w"
 	}
