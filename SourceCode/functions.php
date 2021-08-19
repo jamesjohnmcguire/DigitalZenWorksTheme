@@ -7,9 +7,9 @@
  * @package DigitalZen
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
+if ( ! defined( 'DIGITALZEN_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define( 'DIGITALZEN_VERSION', '1.0.0' );
 }
 
 if ( ! function_exists( 'digitalzen_setup' ) ) :
@@ -140,10 +140,10 @@ add_action( 'widgets_init', 'digitalzen_widgets_init' );
  * Enqueue scripts and styles.
  */
 function digitalzen_scripts() {
-	wp_enqueue_style( 'digitalzen-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'digitalzen-style', get_stylesheet_uri(), array(), DIGITALZEN_VERSION );
 	wp_style_add_data( 'digitalzen-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'digitalzen-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'digitalzen-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DIGITALZEN_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
