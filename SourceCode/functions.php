@@ -41,7 +41,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 if ( ! defined( 'DIGITALZEN_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'DIGITALZEN_VERSION', '0.3.7' );
+	define( 'DIGITALZEN_VERSION', '0.3.9' );
 }
 
 add_action( 'after_setup_theme', 'digitalzen_setup' );
