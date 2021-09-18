@@ -9,8 +9,16 @@ CALL composer install
 ECHO outdated packages:
 CALL composer outdated
 
-ECHO PHP code styles
+ECHO Checking PHP code styles
 CALL vendor\bin\phpcs -sp --standard=ruleset.xml .
+
+ECHO Updating version
+CALL VersionUpdate style.css
+CALL VersionUpdate style-rtl.css
+CALL VersionUpdate functions.php
+
+ECHO Creating language files
+CALL wp i18n make-pot . languages/digitalzen.pot
 
 :deploy
 REM CALL grunt sass

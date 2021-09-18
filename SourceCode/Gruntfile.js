@@ -43,7 +43,7 @@ module.exports = function(grunt)
 			{
 				files:
 				{
-					'js/min/default.min.js': ['assets/js/customizer.js', 'assets/js/navigation.js']
+					'assets/js/min/default.min.js': ['assets/js/customizer.js', 'assets/js/navigation.js']
 				}
 			}
 		},
