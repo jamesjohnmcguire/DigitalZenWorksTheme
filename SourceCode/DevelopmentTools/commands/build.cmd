@@ -12,6 +12,10 @@ CALL composer outdated
 ECHO PHP code styles
 CALL vendor\bin\phpcs -sp --standard=ruleset.xml .
 
+CALL VersionUpdate style.css
+CALL VersionUpdate style-rtl.css
+CALL VersionUpdate functions.php
+
 :deploy
 REM CALL grunt sass
 CALL npm run compile:css
