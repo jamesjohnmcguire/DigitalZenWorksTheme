@@ -44,7 +44,7 @@ function digitalzen_get_status_line( $authordata, $is_excerpt = true, $show_rss 
 						<li>
 							<span class="fa fa-user"></span>
 							<span class="author vcard">
-								<a class="url fn n" href="<?php echo esc_attr( $author ); ?>"
+								<a class="url fn n" href="<?php echo esc_html( $author ); ?>"
 								title="<?php echo esc_attr( $author_tip ); ?>">
 								<?php the_author(); ?></a>
 							</span>
