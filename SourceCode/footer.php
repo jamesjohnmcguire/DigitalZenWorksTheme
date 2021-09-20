@@ -9,20 +9,24 @@
  * @package DigitalZen
  */
 
+// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+
+/* translators: %s: CMS name, i.e. WordPress. */
+$digitalzen_text = esc_html__( 'Proudly powered by %s', 'digital-zen' );
+$digitalzen_text = sprintf( $digitalzen_text, 'WordPress' );
+
+/* translators: 1: Theme name, 2: Theme author. */
+$digitalzen_text2 = esc_html__( 'Theme: %1$s by %2$s.', 'digital-zen' )
 ?>
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'digital-zen' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'digital-zen' ), 'WordPress' );
-				?>
+				<?php echo $digitalzen_text; ?>
 			</a>
 			<span class="sep"> | </span>
 				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'digital-zen' ), 'digital-zen', '<a href="https://digitalzenworks.com">James John McGuire</a>' );
+				printf( $digitalzen_text, 'digital-zen', '<a href="https://digitalzenworks.com">James John McGuire</a>' );
 				?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
