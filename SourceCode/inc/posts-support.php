@@ -50,10 +50,10 @@ function digitalzen_get_status_line( $authordata, $is_excerpt = true, $show_rss 
 							</span>
 						</li>
 						<li><span class="fa fa-calendar"></span> <?php the_time( 'Y-m-d' ); ?></li>
-						<li><span class="fa fa-file"></span><?php echo esc_attr( $categories ); ?></li>
-						<li><span class="fa fa-tags"></span><?php echo esc_attr( $tags ); ?></li>
+						<li><span class="fa fa-file"></span><?php echo esc_html( $categories ); ?></li>
+						<li><span class="fa fa-tags"></span><?php echo esc_html( $tags ); ?></li>
 						<?php echo wp_kses_post( $rss ); ?>
-						<li class="pull-right"><a href="<?php the_permalink(); ?>" class="btn-link"><?php echo esc_attr( $link ); ?></a></li>
+						<li class="pull-right"><a href="<?php the_permalink(); ?>" class="btn-link"><?php echo esc_html( $link ); ?></a></li>
 					</ul>
 	<?php
 }
