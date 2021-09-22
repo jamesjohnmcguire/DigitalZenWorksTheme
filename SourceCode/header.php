@@ -4,9 +4,11 @@
  *
  * This is the template that displays all of the <head> section and everything up until <div id="content">
  *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package DigitalZen
+ * @package   DigitalZen
+ * @author    James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
+ * @link      https://developer.wordpress.org/themes/basics/template-files/#template-partials
  */
 
 ?>

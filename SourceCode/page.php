@@ -7,9 +7,11 @@
  * and that other 'pages' on your WordPress site may use a
  * different template.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package DigitalZen
+ * @package   DigitalZen
+ * @author    James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
+ * @link      https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
 
 get_header();

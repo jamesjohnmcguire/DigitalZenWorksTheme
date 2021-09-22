@@ -4,14 +4,20 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package DigitalZen
+ * @package   DigitalZen
+ * @author    James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if ( ! function_exists( 'digitalzen_posted_on' ) ) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
+	 *
+	 * @return void
 	 */
-	function digitalzen_posted_on() {
+	function digitalzen_posted_on()
+	{
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -39,8 +45,11 @@ endif;
 if ( ! function_exists( 'digitalzen_posted_by' ) ) :
 	/**
 	 * Prints HTML with meta information for the current author.
+	 *
+	 * @return void
 	 */
-	function digitalzen_posted_by() {
+	function digitalzen_posted_by()
+	{
 		$byline = sprintf(
 			/* translators: %s: post author. */
 			esc_html_x( 'by %s', 'post author', 'digital-zen' ),
@@ -57,8 +66,11 @@ endif;
 if ( ! function_exists( 'digitalzen_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
+	 *
+	 * @return void
 	 */
-	function digitalzen_entry_footer() {
+	function digitalzen_entry_footer()
+	{
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
@@ -122,8 +134,11 @@ if ( ! function_exists( 'digitalzen_post_thumbnail' ) ) :
 	 *
 	 * Wraps the post thumbnail in an anchor element on index views, or a div
 	 * element when on single views.
+	 *
+	 * @return void
 	 */
-	function digitalzen_post_thumbnail() {
+	function digitalzen_post_thumbnail()
+	{
 		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 			return;
 		}
@@ -161,9 +176,12 @@ if ( ! function_exists( 'digitalzen_wp_body_open' ) ) :
 	/**
 	 * Shim for sites older than 5.2.
 	 *
+	 * @return void
+	 *
 	 * @link https://core.trac.wordpress.org/ticket/12563
 	 */
-	function digitalzen_wp_body_open() {
+	function digitalzen_wp_body_open()
+	{
 		do_action( 'digitalzen_wp_body_open' );
 	}
 endif;

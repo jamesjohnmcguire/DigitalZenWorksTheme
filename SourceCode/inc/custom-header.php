@@ -6,17 +6,21 @@
  *
 	<?php the_header_image_tag(); ?>
  *
+ * @package   DigitalZen
+ * @author    James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
- *
- * @package DigitalZen
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
  * @uses digitalzen_header_style()
+ * @return void
  */
-function digitalzen_custom_header_setup() {
+function digitalzen_custom_header_setup()
+{
 	add_theme_support(
 		'custom-header',
 		apply_filters(
@@ -39,8 +43,11 @@ if ( ! function_exists( 'digitalzen_header_style' ) ) :
 	 * Styles the header image and text displayed on the blog.
 	 *
 	 * @see digitalzen_custom_header_setup().
+	 *
+	 * @return void
 	 */
-	function digitalzen_header_style() {
+	function digitalzen_header_style()
+	{
 		$header_text_color = get_header_textcolor();
 
 		/*

@@ -2,9 +2,11 @@
 /**
  * DigitalZen functions and definitions
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package DigitalZen
+ * @package   DigitalZen
+ * @author    James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
+ * @link      https://developer.wordpress.org/themes/basics/theme-functions/
  */
 
 /**
@@ -56,8 +58,11 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 	 * Note that this function is hooked into the after_setup_theme hook, which
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
+	 *
+	 * @return void
 	 */
-	function digitalzen_setup() {
+	function digitalzen_setup()
+	{
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -146,8 +151,10 @@ endif;
  * Priority 0 to make it available to lower priority callbacks.
  *
  * @global int $content_width
+ * @return void
  */
-function digitalzen_content_width() {
+function digitalzen_content_width()
+{
 	$GLOBALS['content_width'] = apply_filters( 'digitalzen_content_width', 640 );
 }
 
@@ -155,8 +162,10 @@ function digitalzen_content_width() {
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ * @return void
  */
-function digitalzen_widgets_init() {
+function digitalzen_widgets_init()
+{
 	register_sidebar(
 		array(
 			'name'          => esc_html__( 'Sidebar', 'digital-zen' ),
@@ -172,8 +181,11 @@ function digitalzen_widgets_init() {
 
 /**
  * Enqueue scripts and styles.
+ *
+ * @return void
  */
-function digitalzen_scripts() {
+function digitalzen_scripts()
+{
 	wp_enqueue_style( 'digitalzen-style', get_stylesheet_uri(), array(), DIGITALZEN_VERSION );
 	wp_style_add_data( 'digitalzen-style', 'rtl', 'replace' );
 
