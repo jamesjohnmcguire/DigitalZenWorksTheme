@@ -5,7 +5,9 @@ IF "%1"=="complete" GOTO complete
 GOTO deploy
 
 :complete
+CALL composer validate --strict
 CALL composer install --prefer-dist
+
 ECHO outdated packages:
 CALL composer outdated
 
