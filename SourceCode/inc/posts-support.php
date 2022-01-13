@@ -4,7 +4,7 @@
  *
  * @package   DigitalZen
  * @author    James John McGuire <jamesjohnmcguire@gmail.com>
- * @copyright 2021 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 - 2022 James John McGuire <jamesjohnmcguire@gmail.com>
  * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
  */
 
