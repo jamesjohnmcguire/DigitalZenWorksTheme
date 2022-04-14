@@ -5,7 +5,9 @@ IF "%1"=="complete" GOTO complete
 GOTO deploy
 
 :complete
-CALL composer install
+CALL composer validate --strict
+CALL composer install --prefer-dist
+
 ECHO outdated packages:
 CALL composer outdated
 
@@ -36,7 +38,7 @@ ECHO Backing up vendor
 XCOPY /C /D /E /H /I /R /S /Y vendor vendor.bak >NUL
 
 ECHO Installing vendor no dev
-CALL composer install --no-dev
+CALL composer install --no-dev --prefer-dist
 
 CD vendor
 

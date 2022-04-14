@@ -2,7 +2,10 @@
 /**
  * DigitalZen Theme Posts Customizer
  *
- * @package DigitalZen
+ * @package   DigitalZen
+ * @author    James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 - 2022 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 /**
@@ -10,9 +13,11 @@
  *
  * @param string $authordata author data.
  * @param bool   $is_excerpt Indicates whether the post is an excerpt.
- * @param bool   $show_rss Indicated whether to show rss or not.
+ * @param bool   $show_rss   Indicated whether to show rss or not.
+ * @return void
  */
-function digitalzen_get_status_line( $authordata, $is_excerpt = true, $show_rss = true ) {
+function digitalzen_get_status_line( $authordata, $is_excerpt = true, $show_rss = true )
+{
 	$author_id  = get_the_author_meta( 'ID' );
 	$author     = get_author_posts_url( $author_id );
 	$author_tip = sprintf(
@@ -44,16 +49,16 @@ function digitalzen_get_status_line( $authordata, $is_excerpt = true, $show_rss 
 						<li>
 							<span class="fa fa-user"></span>
 							<span class="author vcard">
-								<a class="url fn n" href="<?php echo esc_attr( $author ); ?>"
+								<a class="url fn n" href="<?php echo esc_html( $author ); ?>"
 								title="<?php echo esc_attr( $author_tip ); ?>">
 								<?php the_author(); ?></a>
 							</span>
 						</li>
 						<li><span class="fa fa-calendar"></span> <?php the_time( 'Y-m-d' ); ?></li>
-						<li><span class="fa fa-file"></span><?php echo esc_attr( $categories ); ?></li>
-						<li><span class="fa fa-tags"></span><?php echo esc_attr( $tags ); ?></li>
+						<li><span class="fa fa-file"></span><?php echo esc_html( $categories ); ?></li>
+						<li><span class="fa fa-tags"></span><?php echo esc_html( $tags ); ?></li>
 						<?php echo wp_kses_post( $rss ); ?>
-						<li class="pull-right"><a href="<?php the_permalink(); ?>" class="btn-link"><?php echo esc_attr( $link ); ?></a></li>
+						<li class="pull-right"><a href="<?php the_permalink(); ?>" class="btn-link"><?php echo esc_html( $link ); ?></a></li>
 					</ul>
 	<?php
 }
@@ -61,10 +66,12 @@ function digitalzen_get_status_line( $authordata, $is_excerpt = true, $show_rss 
 /**
  * Get custom status for the Theme Customizer.
  *
- * @param string $authordata author data.
+ * @param string $authordata            Author data.
  * @param bool   $show_other_categories Indicates whether to show other categories.
+ * @return void
  */
-function digitalzen_get_the_loop( $authordata, $show_other_categories ) {
+function digitalzen_get_the_loop( $authordata, $show_other_categories )
+{
 	while ( have_posts() ) {
 		the_post();
 		?>

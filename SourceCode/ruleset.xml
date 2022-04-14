@@ -24,13 +24,6 @@
 	<exclude-pattern>vendor.export</exclude-pattern>
 	<exclude-pattern>Gruntfile.js</exclude-pattern>
 
-	<rule ref="Generic.Files.LineLength">
-		<properties>
-			<property name="lineLimit" value="180"/>
-			<property name="absoluteLineLimit" value="0"/>
-		</properties>
-	</rule>
-
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array" value="digital-zen"/>
@@ -49,6 +42,47 @@
 		</properties>
 	</rule>
 
+	<rule ref="PEAR">
+		<exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine"/>
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+		<exclude name="PEAR.Commenting.ClassComment.MissingAuthorTag"/>
+		<exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag"/>
+		<exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag"/>
+		<exclude name="PEAR.Commenting.ClassComment.MissingLinkTag"/>
+		<exclude name="PEAR.Commenting.ClassComment.MissingPackageTag"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingCategoryTag"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
+		<exclude name="PEAR.ControlStructures.ControlSignature"/>
+		<exclude name="PEAR.ControlStructures.MultiLineCondition.CloseBracketNewLine"/>
+		<exclude name="PEAR.ControlStructures.MultiLineCondition.NewlineBeforeOpenBrace"/>
+		<exclude name="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"/>
+		<exclude name="PEAR.ControlStructures.MultiLineCondition.StartWithBoolean"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
+		<exclude name="PEAR.Functions.FunctionDeclaration.CloseBracketLine"/>
+		<exclude name="PEAR.Functions.FunctionDeclaration.NewlineBeforeOpenBrace"/>
+		<exclude name="PEAR.NamingConventions.ValidFunctionName.FunctionNameInvalid"/>
+		<exclude name="PEAR.NamingConventions.ValidFunctionName.FunctionNoCapital"/>
+		<exclude name="PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
+	</rule>
+
+	<rule ref="PHPCompatibilityWP"/>
+	<rule ref="WordPress" >
+		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing.ExtraSpaceAfterCloseParenthesis"/>
+	</rule>
+	<rule ref="WordPress-Core" />
+	<rule ref="WordPress-Docs" />
+	<rule ref="WordPress-Extra" />
+	<rule ref="WPThemeReview"/>
+
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="180"/>
+			<property name="absoluteLineLimit" value="0"/>
+		</properties>
+	</rule>
+
 	<!-- Verify that everything in the global namespace is prefixed with a theme specific prefix.
 		 Multiple valid prefixes can be provided as a comma-delimited list. -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
@@ -56,12 +90,5 @@
 			<property name="prefixes" type="array" value="digitalzen" />
 		</properties>
 	</rule>
-
-	<rule ref="PHPCompatibilityWP"/>
-	<rule ref="WordPress"/>
-	<rule ref="WordPress-Core" />
-	<rule ref="WordPress-Docs" />
-	<rule ref="WordPress-Extra" />
-	<rule ref="WPThemeReview"/>
 
 </ruleset>

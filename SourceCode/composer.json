@@ -20,7 +20,7 @@
 		"php-parallel-lint/php-parallel-lint": "^1.2.0",
 		"phpcompatibility/php-compatibility": "*",
 		"phpcsstandards/phpcsdevtools": "^1.0",
-		"phpstan/phpstan": "^0.12.87",
+		"phpstan/phpstan": "^1.5",
 		"phpunit/phpunit": "^9.1",
 		"squizlabs/php_codesniffer": "*",
 		"wp-cli/i18n-command": "^2.2.5",

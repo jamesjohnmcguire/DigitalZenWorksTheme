@@ -2,9 +2,11 @@
 /**
  * The template for displaying 404 pages (not found)
  *
- * @link https://codex.wordpress.org/Creating_an_Error_404_Page
- *
- * @package DigitalZen
+ * @package   DigitalZen
+ * @author    James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 - 2022 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
+ * @link      https://codex.wordpress.org/Creating_an_Error_404_Page
  */
 
 get_header();
