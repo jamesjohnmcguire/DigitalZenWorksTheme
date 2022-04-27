@@ -22,7 +22,7 @@
 		"grunt-contrib-sass": "^2.0.0",
 		"grunt-contrib-uglify": "^5.0.1",
 		"grunt-contrib-watch": "^1.1.0",
-		"node-sass": "^6.0.1",
+		"node-sass": "^7.0.0",
 		"parcel-bundler": "^1.12.4",
 		"rtlcss": "^2.5.0",
 		"stylelint-config-wordpress": "^17.0.0",
