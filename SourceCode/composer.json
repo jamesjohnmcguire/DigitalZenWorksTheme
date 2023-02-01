@@ -31,5 +31,10 @@
 		"lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
 		"lint:php": "@php ./vendor/bin/parallel-lint --exclude node_modules --exclude vendor --exclude vendor.export --exclude Gruntfile.js .",
 		"make-pot": "wp i18n make-pot . languages/digitalzen.pot"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
 }
