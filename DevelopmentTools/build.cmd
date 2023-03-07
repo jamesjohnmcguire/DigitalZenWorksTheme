@@ -28,14 +28,14 @@ ECHO Creating language files
 CALL wp i18n make-pot . languages/digitalzen.pot
 
 :deploy
-REM CALL grunt sass
+CALL grunt sass
 CALL npm run compile:css
 CALL grunt cssmin
 CALL grunt uglify
-REM CALL grunt watch
 
-REM CALL UnitTests.cmd
+CALL UnitTests.cmd
 
+CD SourceCode
 IF EXIST vendor.bak\NUL RD /S /Q vendor.bak
 IF EXIST vendor.export\NUL RD /S /Q vendor.export
 
