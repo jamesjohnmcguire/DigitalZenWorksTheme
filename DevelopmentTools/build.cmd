@@ -1,5 +1,5 @@
 CD %~dp0
-CD ..\..
+CD ..\SourceCode
 
 IF "%1"=="complete" GOTO complete
 GOTO deploy
@@ -14,11 +14,16 @@ CALL composer outdated
 ECHO Checking PHP code styles
 CALL vendor\bin\phpcs -sp --standard=ruleset.xml .
 
+IF "%2"=="update" GOTO update
+GOTO continue
+
+:update
 ECHO Updating version
 CALL VersionUpdate style.css
 CALL VersionUpdate style-rtl.css
 CALL VersionUpdate functions.php
 
+:continue
 ECHO Creating language files
 CALL wp i18n make-pot . languages/digitalzen.pot
 
