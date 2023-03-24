@@ -16,17 +16,17 @@
 	"dependencies": {
 	},
 	"devDependencies": {
-		"dir-archiver": "^1.1.1",
-		"grunt": "^1.5.3",
+		"dir-archiver": "^2.1.0",
+		"grunt": "^1.6.1",
 		"grunt-contrib-cssmin": "^4.0.0",
 		"grunt-contrib-sass": "^2.0.0",
-		"grunt-contrib-uglify": "^5.0.1",
+		"grunt-contrib-uglify": "^5.2.2",
 		"grunt-contrib-watch": "^1.1.0",
-		"node-sass": "^7.0.0",
+		"node-sass": "^8.0.0",
 		"parcel-bundler": "^1.12.4",
-		"rtlcss": "^2.5.0",
+		"rtlcss": "^4.0.0",
 		"stylelint-config-wordpress": "^17.0.0",
-		"@wordpress/scripts": "^17.1.0"
+		"@wordpress/scripts": "^26.0.0"
 	},
 	"rtlcssConfig": {
 		"options": {
