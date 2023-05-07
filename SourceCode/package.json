@@ -26,7 +26,7 @@
 		"parcel-bundler": "^1.12.4",
 		"rtlcss": "^4.0.0",
 		"stylelint-config-wordpress": "^17.0.0",
-		"@wordpress/scripts": "^26.0.0"
+		"@wordpress/scripts": "^26.3.0"
 	},
 	"rtlcssConfig": {
 		"options": {
