@@ -14,7 +14,7 @@
 		"php": ">=7.2"
 	},
 	"require-dev": {
-		"10up/wp_mock": "^0.5",
+		"10up/wp_mock": "^1.0",
 		"brain/monkey": "^2.4",
 		"dealerdirect/phpcodesniffer-composer-installer": "*",
 		"php-parallel-lint/php-parallel-lint": "^1.2.0",
