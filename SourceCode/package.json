@@ -18,14 +18,13 @@
 	"devDependencies": {
 		"dir-archiver": "^2.1.0",
 		"grunt": "^1.6.1",
-		"grunt-contrib-cssmin": "^4.0.0",
+		"grunt-contrib-cssmin": "^5.0.0",
 		"grunt-contrib-sass": "^2.0.0",
 		"grunt-contrib-uglify": "^5.2.2",
 		"grunt-contrib-watch": "^1.1.0",
-		"node-sass": "^8.0.0",
-		"parcel-bundler": "^1.12.4",
+		"node-sass": "^9.0.0",
+		"parcel": "^2.0.0",
 		"rtlcss": "^4.0.0",
-		"stylelint-config-wordpress": "^17.0.0",
 		"@wordpress/scripts": "^26.3.0"
 	},
 	"rtlcssConfig": {
