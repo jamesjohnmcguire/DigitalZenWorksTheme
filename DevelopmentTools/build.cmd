@@ -23,6 +23,16 @@ CALL VersionUpdate style.css
 CALL VersionUpdate style-rtl.css
 CALL VersionUpdate functions.php
 
+SET BootStrapVersion=5.3.5
+wget https://github.com/twbs/bootstrap/releases/download/v%BootStrapVersion%/bootstrap-%BootStrapVersion%-dist.zip
+
+7z x bootstrap-%BootStrapVersion%-dist.zip -o..\SourceCode\assets\Bootstrap\ -y >NUL 2>NUL
+
+MOVE /Y bootstrap-%BootStrapVersion%-dist\css\bootstrap.min.css assets\css\vendor
+MOVE /Y bootstrap-%BootStrapVersion%-dist\css\bootstrap.min.css.map assets\css\vendor
+MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js assets\js\vendor
+MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js.map assets\js\vendor
+
 :continue
 ECHO Creating language files
 CALL wp i18n make-pot . languages/digitalzen.pot
