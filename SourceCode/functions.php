@@ -50,6 +50,10 @@ add_action( 'after_setup_theme', 'digitalzen_setup' );
 add_action( 'after_setup_theme', 'digitalzen_content_width', 0 );
 add_action( 'widgets_init', 'digitalzen_widgets_init' );
 add_action( 'wp_enqueue_scripts', 'digitalzen_scripts' );
+add_action(
+	'wp_enqueue_scripts',
+	'dequeue_wpcf7_recaptcha_when_not_needed',
+	100);
 
 if ( ! function_exists( 'digitalzen_setup' ) ) :
 	/**
@@ -193,5 +197,51 @@ function digitalzen_scripts()
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+}
+
+if (!function_exists('dequeue_wpcf7_recaptcha_when_not_needed'))
+{
+	function dequeue_wpcf7_recaptcha_when_not_needed()
+	{
+		// Only run on the frontend
+		if (!is_admin())
+		{
+			// Check if the current post content contains
+			// a Contact Form 7 shortcode.
+			global $post;
+
+			if (!isset($post) ||
+				!has_shortcode($post->post_content, 'contact-form-7'))
+			{
+				// Dequeue the reCAPTCHA script and its inline data.
+				wp_dequeue_script('wpcf7-recaptcha-js');
+				wp_deregister_script('wpcf7-recaptcha-js');
+
+				// Remove the inline script.
+				add_filter(
+					'script_loader_tag',
+					'\DigitalZenWorksTheme\remove_wpcf7_recaptcha_inline_script',
+					10,
+					2);
+			}
+		}
+	}
+}
+
+if (!function_exists('remove_wpcf7_recaptcha_inline_script'))
+{
+	// Remove unused inline script tags for contact forms and reCAPTCHA.
+	function remove_wpcf7_recaptcha_inline_script($tag, $handle)
+	{
+		if ($handle === 'contact-form-7' ||
+			$handle === 'google-recaptcha' ||
+			$handle === 'wpcf7-recaptcha' ||
+			$handle === 'wpcf7-recaptcha-js-before')
+		{
+			$tag = '';
+		}
+
+		return $tag;
 	}
 }
