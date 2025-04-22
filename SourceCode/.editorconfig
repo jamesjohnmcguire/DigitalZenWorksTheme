@@ -9,8 +9,5 @@ indent_style = tab
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{scss,php}]
-# Unix-style newlines with a newline ending every file
+[*.{php,scss,sh}]
 end_of_line = lf
-
-[*.{js,php}]
