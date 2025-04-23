@@ -50,6 +50,7 @@ add_action( 'after_setup_theme', 'digitalzen_setup' );
 add_action( 'after_setup_theme', 'digitalzen_content_width', 0 );
 add_action( 'widgets_init', 'digitalzen_widgets_init' );
 add_action( 'wp_enqueue_scripts', 'digitalzen_scripts' );
+add_action( 'wp_enqueue_scripts', 'dequeue_polyfill', 100 );
 add_action(
 	'wp_enqueue_scripts',
 	'dequeue_wpcf7_recaptcha_when_not_needed',
@@ -197,6 +198,18 @@ function digitalzen_scripts()
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+}
+
+if (!function_exists('dequeue_polyfill'))
+{
+	function dequeue_polyfill()
+	{
+		wp_dequeue_script( 'regenerator-runtime' );
+		wp_deregister_script( 'regenerator-runtime' );
+
+		wp_dequeue_script( 'wp-polyfill' );
+		wp_deregister_script( 'wp-polyfill' );
 	}
 }
 
