@@ -49,12 +49,66 @@ if ( ! defined( 'DIGITALZEN_VERSION' ) ) {
 add_action( 'after_setup_theme', 'digitalzen_setup' );
 add_action( 'after_setup_theme', 'digitalzen_content_width', 0 );
 add_action( 'widgets_init', 'digitalzen_widgets_init' );
-add_action( 'wp_enqueue_scripts', 'digitalzen_scripts' );
 add_action( 'wp_enqueue_scripts', 'dequeue_polyfill', 100 );
 add_action(
 	'wp_enqueue_scripts',
 	'dequeue_wpcf7_recaptcha_when_not_needed',
 	100);
+add_action( 'wp_enqueue_scripts', 'digitalzen_scripts' );
+
+if (!function_exists('dequeue_polyfill'))
+{
+	function dequeue_polyfill()
+	{
+		wp_dequeue_script( 'regenerator-runtime' );
+		wp_deregister_script( 'regenerator-runtime' );
+
+		wp_dequeue_script( 'wp-polyfill' );
+		wp_deregister_script( 'wp-polyfill' );
+	}
+}
+
+if (!function_exists('dequeue_wpcf7_recaptcha_when_not_needed'))
+{
+	function dequeue_wpcf7_recaptcha_when_not_needed()
+	{
+		// Only run on the frontend
+		if (!is_admin())
+		{
+			// Check if the current post content contains
+			// a Contact Form 7 shortcode.
+			global $post;
+
+			if (!isset($post) ||
+				!has_shortcode($post->post_content, 'contact-form-7'))
+			{
+				// Dequeue the reCAPTCHA script and its inline data.
+				wp_dequeue_script('wpcf7-recaptcha-js');
+				wp_deregister_script('wpcf7-recaptcha-js');
+
+				// Remove the inline script.
+				add_filter(
+					'script_loader_tag',
+					'\DigitalZenWorksTheme\remove_wpcf7_recaptcha_inline_script',
+					10,
+					2);
+			}
+		}
+	}
+}
+
+/**
+ * Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ * @return void
+ */
+function digitalzen_content_width()
+{
+	$GLOBALS['content_width'] = apply_filters( 'digitalzen_content_width', 640 );
+}
 
 if ( ! function_exists( 'digitalzen_setup' ) ) :
 	/**
@@ -151,16 +205,20 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 endif;
 
 /**
- * Set the content width in pixels, based on the theme's design and stylesheet.
+ * Enqueue scripts and styles.
  *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
  * @return void
  */
-function digitalzen_content_width()
+function digitalzen_scripts()
 {
-	$GLOBALS['content_width'] = apply_filters( 'digitalzen_content_width', 640 );
+	wp_enqueue_style( 'digitalzen-style', get_stylesheet_uri(), array(), DIGITALZEN_VERSION );
+	wp_style_add_data( 'digitalzen-style', 'rtl', 'replace' );
+
+	wp_enqueue_script( 'digitalzen-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DIGITALZEN_VERSION, true );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 
 /**
@@ -182,64 +240,6 @@ function digitalzen_widgets_init()
 			'after_title'   => '</h2>',
 		)
 	);
-}
-
-/**
- * Enqueue scripts and styles.
- *
- * @return void
- */
-function digitalzen_scripts()
-{
-	wp_enqueue_style( 'digitalzen-style', get_stylesheet_uri(), array(), DIGITALZEN_VERSION );
-	wp_style_add_data( 'digitalzen-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'digitalzen-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DIGITALZEN_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-
-if (!function_exists('dequeue_polyfill'))
-{
-	function dequeue_polyfill()
-	{
-		wp_dequeue_script( 'regenerator-runtime' );
-		wp_deregister_script( 'regenerator-runtime' );
-
-		wp_dequeue_script( 'wp-polyfill' );
-		wp_deregister_script( 'wp-polyfill' );
-	}
-}
-
-if (!function_exists('dequeue_wpcf7_recaptcha_when_not_needed'))
-{
-	function dequeue_wpcf7_recaptcha_when_not_needed()
-	{
-		// Only run on the frontend
-		if (!is_admin())
-		{
-			// Check if the current post content contains
-			// a Contact Form 7 shortcode.
-			global $post;
-
-			if (!isset($post) ||
-				!has_shortcode($post->post_content, 'contact-form-7'))
-			{
-				// Dequeue the reCAPTCHA script and its inline data.
-				wp_dequeue_script('wpcf7-recaptcha-js');
-				wp_deregister_script('wpcf7-recaptcha-js');
-
-				// Remove the inline script.
-				add_filter(
-					'script_loader_tag',
-					'\DigitalZenWorksTheme\remove_wpcf7_recaptcha_inline_script',
-					10,
-					2);
-			}
-		}
-	}
 }
 
 if (!function_exists('remove_wpcf7_recaptcha_inline_script'))
