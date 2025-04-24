@@ -72,7 +72,7 @@ if (!function_exists('dequeue_wpcf7_recaptcha_when_not_needed'))
 {
 	function dequeue_wpcf7_recaptcha_when_not_needed()
 	{
-		// Only run on the frontend
+		// Only check for the frontend
 		if (!is_admin())
 		{
 			// Check if the current post content contains
@@ -92,6 +92,9 @@ if (!function_exists('dequeue_wpcf7_recaptcha_when_not_needed'))
 					'\DigitalZenWorksTheme\remove_wpcf7_recaptcha_inline_script',
 					10,
 					2);
+
+				add_filter( 'wpcf7_load_js', '__return_false' );
+				add_filter( 'wpcf7_load_css', '__return_false' );
 			}
 		}
 	}
@@ -249,6 +252,8 @@ if (!function_exists('remove_wpcf7_recaptcha_inline_script'))
 	{
 		if ($handle === 'contact-form-7' ||
 			$handle === 'google-recaptcha' ||
+			$handle === 'swv' ||
+			$handle === 'wp-i18n' ||
 			$handle === 'wpcf7-recaptcha' ||
 			$handle === 'wpcf7-recaptcha-js-before')
 		{
