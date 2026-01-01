@@ -1,4 +1,4 @@
-# Copyright (C) 2023 James John McGuire
+# Copyright (C) 2023 - 2026 James John McGuire
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
