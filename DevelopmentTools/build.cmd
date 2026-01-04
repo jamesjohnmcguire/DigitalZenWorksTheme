@@ -1,18 +1,18 @@
 CD %~dp0
-CD ..\SourceCode
+CD ..
 
-IF "%1"=="complete" GOTO complete
-GOTO deploy
-
-:complete
-CALL composer validate --strict
+ECHO Checking composer...
 CALL composer install --prefer-dist
+CALL composer validate --strict
+ECHO outdated:
+CALL composer outdated --direct
 
-ECHO outdated packages:
-CALL composer outdated
+ECHO Checking npm...
+CALL npm install
+CALL npm outdated
 
 ECHO Checking PHP code styles
-CALL vendor\bin\phpcs -sp --standard=ruleset.xml .
+CALL vendor\bin\phpcs -sp --standard=ruleset.xml SourceCode
 
 IF "%2"=="update" GOTO update
 GOTO continue
@@ -37,14 +37,15 @@ MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js.map assets\
 ECHO Creating language files
 CALL wp i18n make-pot . languages/digitalzen.pot
 
-:deploy
-CALL grunt sass
-CALL npm run compile:css
+ECHO ON
 CALL grunt cssmin
-CALL grunt uglify
 
-CALL UnitTests.cmd
+vendor\bin\phpunit --testdox -c Tests/phpunit.xml Tests/UnitTests.php %1 %2
 
+IF "%1"=="deploy" GOTO deploy
+GOTO finish
+
+:deploy
 CD SourceCode
 IF EXIST vendor.bak\NUL RD /S /Q vendor.bak
 IF EXIST vendor.export\NUL RD /S /Q vendor.export
@@ -66,3 +67,5 @@ IF EXIST DigitalZenTheme.zip DEL /Q DigitalZenTheme.zip
 
 REN vendor vendor.export
 REN vendor.bak vendor
+
+:finish
