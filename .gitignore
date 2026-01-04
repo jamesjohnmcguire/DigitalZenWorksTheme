@@ -1,6 +1,5 @@
-SourceCode/node_modules
-SourceCode/vendor
-SourceCode/vendor.export
+node_modules
+vendor
 
 SourceCode/style-rtl.css
 SourceCode/assets/css/*.css
