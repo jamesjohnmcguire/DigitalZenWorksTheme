@@ -2,14 +2,13 @@
 <ruleset name="Notarization Plugin Coding Standard">
 
  	<rule ref="./ruleset.default.xml"/>
- 	<rule ref="./ruleset.wordpress.xml"/>
 
 	<rule ref="PEAR">
 		<exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
 	</rule>
 
-	<rule ref="Squiz">
-		<exclude name="Squiz.Classes.ClassDeclaration.SpaceBeforeCloseBrace"/>
+	<rule ref="Universal">
+		<exclude name="Universal.Attributes.RequireAttributeParentheses.Missing"/>
 	</rule>
 
 </ruleset>
