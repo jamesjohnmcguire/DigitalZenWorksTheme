@@ -12,9 +12,9 @@ module.exports = function(grunt)
 			{
 				files:
 				{
-					'assets/css/min/default.min.css':
+					'SourceCode/assets/css/min/default.min.css':
 					[
-						'assets/css/style.css'
+						'SourceCode/assets/css/style.css'
 					]
 				}
 			}
