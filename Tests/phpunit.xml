@@ -1,24 +1,29 @@
 <?xml version="1.0"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd"
 	backupGlobals="true"
-	backupStaticAttributes="false"
+	backupStaticProperties="false"
+	cacheDirectory=".phpunit.cache"
 	cacheResult="false"
 	colors="true"
-	convertErrorsToExceptions="true"
-	convertNoticesToExceptions="true"
-	convertWarningsToExceptions="true"
-	forceCoversAnnotation="false"
+	displayDetailsOnIncompleteTests="true"
+	displayDetailsOnSkippedTests="true"
+	displayDetailsOnTestsThatTriggerDeprecations="true"
+	displayDetailsOnTestsThatTriggerErrors="true"
+	displayDetailsOnTestsThatTriggerNotices="true"
+	displayDetailsOnTestsThatTriggerWarnings="true"
 	processIsolation="false"
+	requireCoverageMetadata="false"
 	stopOnError="false"
 	stopOnFailure="false"
 	stopOnIncomplete="false"
 	stopOnSkipped="false"
 	stopOnRisky="false"
+	testdox="true"
 	timeoutForSmallTests="1"
 	timeoutForMediumTests="10"
 	timeoutForLargeTests="60"
-	verbose="true"
 	>
 	<coverage/>
 	<php>
@@ -26,4 +31,10 @@
 			name="display_errors"
 			value="true"/>
 	</php>
+	<source/>
+	<testsuites>
+		<testsuite name="all">
+			<file>UnitTests.php</file>
+		</testsuite>
+	</testsuites>
 </phpunit>
