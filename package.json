@@ -1,0 +1,25 @@
+{
+	"author": "JamesMc <jamesjohnmcguire@gmail.com>",
+	"description": "A WordPress parent theme.",
+	"license": "MIT",
+	"main": "index.php",
+	"name": "@digitalzenworks/digitalzentheme",
+	"version": "0.1.1",
+	"keywords": [
+		"WordPress",
+		"Theme"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://gitbub.com/jamesjohnmcguire/DigitalZenWorksTheme.git"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"grunt": "^1.6.1",
+		"grunt-contrib-cssmin": "^5.0.0",
+		"grunt-contrib-sass": "^2.0.0",
+		"grunt-contrib-uglify": "^5.2.2",
+		"grunt-contrib-watch": "^1.1.0"
+	}
+}

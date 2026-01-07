@@ -1,10 +1,13 @@
-SourceCode/node_modules
-SourceCode/vendor
-SourceCode/vendor.export
+/.vscode/
+/node_modules/
+/vendor/
+
+/DigitalZenTheme.code-workspace
 
 SourceCode/style-rtl.css
 SourceCode/assets/css/*.css
 SourceCode/assets/css/min/*.css
 SourceCode/assets/js/min/*.js
 
+languages/digitalzen.pot
 SourceCode/DigitalZenTheme.zip
