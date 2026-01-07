@@ -1,3 +1,5 @@
+@ECHO OFF
+
 CD %~dp0
 CD ..
 
@@ -11,8 +13,15 @@ ECHO Checking npm...
 CALL npm install
 CALL npm outdated
 
-ECHO Checking PHP code styles
-CALL vendor\bin\phpcs -sp --standard=ruleset.xml SourceCode
+ECHO Checking syntax...
+CALL vendor\bin\parallel-lint --exclude .git --exclude vendor .
+
+ECHO Code Analysis...
+CALL vendor\bin\phpstan.phar.bat analyse
+
+ECHO Checking code styles...
+CALL vendor\bin\phpcs.bat -sp --standard=ruleset.xml SourceCode
+CALL vendor\bin\phpcs.bat -sp --standard=ruleset.tests.xml Tests
 
 IF "%2"=="update" GOTO update
 GOTO continue
@@ -35,12 +44,15 @@ MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js.map assets\
 
 :continue
 ECHO Creating language files
+CD SourceCode
 CALL wp i18n make-pot . languages/digitalzen.pot
 
 ECHO ON
 CALL grunt cssmin
+CD ..
 
-vendor\bin\phpunit --testdox -c Tests/phpunit.xml Tests/UnitTests.php %1 %2
+ECHO Running Automated Tests
+CALL vendor\bin\phpunit --config Tests\phpunit.xml
 
 IF "%1"=="deploy" GOTO deploy
 GOTO finish
