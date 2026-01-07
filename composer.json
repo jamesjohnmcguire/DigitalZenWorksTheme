@@ -1,17 +1,24 @@
 {
 	"name": "digitalzenworks/digitalzentheme",
 	"description": "A WordPress parent theme.",
-	"type": "library",
 	"license": "MIT",
+	"type": "library",
 	"authors": [
 		{
-			"name": "JamesMc",
+			"name": "James John McGuire",
 			"email": "jamesjohnmcguire@gmail.com"
 		}
 	],
-	"prefer-stable" : true,
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		},
+		"process-timeout": 0
+	},
+	"minimum-stability": "stable",
 	"require": {
-		"php": ">=7.2"
+		"php": "^7.4 || ^8.0"
 	},
 	"require-dev": {
 		"brain/monkey": "^2.6",
@@ -25,23 +32,12 @@
 		"phpcsstandards/phpcsextra": "^1.2.0",
 		"phpstan/extension-installer": "^1.4",
 		"phpstan/phpstan": "^2.1",
+		"phpstan/phpstan-deprecation-rules": "^2.0",
 		"phpunit/phpunit": "^12.0",
 		"roave/security-advisories": "dev-master",
 		"squizlabs/php_codesniffer": "*",
 		"szepeviktor/phpstan-wordpress": "^2.0",
 		"wp-cli/i18n-command": "^2.2.5",
-		"wp-coding-standards/wpcs": "*",
-		"wptrt/wpthemereview": "^0.2.1"
-	},
-	"scripts": {
-		"lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
-		"lint:php": "@php ./vendor/bin/parallel-lint --exclude node_modules --exclude vendor --exclude vendor.export --exclude Gruntfile.js .",
-		"make-pot": "wp i18n make-pot . languages/digitalzen.pot"
-	},
-	"config": {
-		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": true,
-			"phpstan/extension-installer": true
-		}
+		"wp-coding-standards/wpcs": "*"
 	}
 }

@@ -1,5 +1,8 @@
-node_modules
-vendor
+/.vscode/
+/node_modules/
+/vendor/
+
+/DigitalZenTheme.code-workspace
 
 SourceCode/style-rtl.css
 SourceCode/assets/css/*.css

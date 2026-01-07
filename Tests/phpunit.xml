@@ -26,11 +26,6 @@
 	timeoutForLargeTests="60"
 	>
 	<coverage/>
-	<groups>
-		<exclude>
-			<group>exclude</group>
-		</exclude>
-	</groups>
 	<php>
 		<ini
 			name="display_errors"
@@ -39,7 +34,7 @@
 	<source/>
 	<testsuites>
 		<testsuite name="all">
-			<file>PageTests.php</file>
+			<file>UnitTests.php</file>
 		</testsuite>
 	</testsuites>
 </phpunit>
