@@ -1,0 +1,43 @@
+{
+	"name": "digitalzenworks/digitalzentheme",
+	"description": "A WordPress parent theme.",
+	"license": "MIT",
+	"type": "library",
+	"authors": [
+		{
+			"name": "James John McGuire",
+			"email": "jamesjohnmcguire@gmail.com"
+		}
+	],
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		},
+		"process-timeout": 0
+	},
+	"minimum-stability": "stable",
+	"require": {
+		"php": "^7.4 || ^8.0"
+	},
+	"require-dev": {
+		"brain/monkey": "^2.6",
+		"dealerdirect/phpcodesniffer-composer-installer": "*",
+		"php-parallel-lint/php-console-highlighter": "^1.0",
+		"php-parallel-lint/php-parallel-lint": "^1.2.0",
+		"php-stubs/wordpress-stubs": "^6.8",
+		"phpcompatibility/php-compatibility": "*",
+		"phpcompatibility/phpcompatibility-wp": "*",
+		"phpcsstandards/phpcsdevtools": "^1.0",
+		"phpcsstandards/phpcsextra": "^1.2.0",
+		"phpstan/extension-installer": "^1.4",
+		"phpstan/phpstan": "^2.1",
+		"phpstan/phpstan-deprecation-rules": "^2.0",
+		"phpunit/phpunit": "^12.0",
+		"roave/security-advisories": "dev-master",
+		"squizlabs/php_codesniffer": "*",
+		"szepeviktor/phpstan-wordpress": "^2.0",
+		"wp-cli/i18n-command": "^2.2.5",
+		"wp-coding-standards/wpcs": "*"
+	}
+}

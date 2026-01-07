@@ -1,0 +1,15 @@
+includes:
+	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+	bootstrapFiles:
+		- vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+	dynamicConstantNames:
+		- THEME_DEBUG
+	excludePaths:
+		analyse:
+			- '**/vendor/**'
+	level: 7
+	paths:
+		- SourceCode
+		- Tests
