@@ -13,6 +13,10 @@ ECHO Checking npm...
 CALL npm install
 CALL npm outdated
 
+ECHO .
+ECHO Minifying assets...
+node DevelopmentTools/minify.js
+
 ECHO Checking syntax...
 CALL vendor\bin\parallel-lint --exclude .git --exclude vendor .
 
@@ -46,10 +50,6 @@ MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js.map assets\
 ECHO Creating language files
 CD SourceCode
 CALL wp i18n make-pot . languages/digitalzen.pot
-
-ECHO ON
-CALL grunt cssmin
-CD ..
 
 ECHO Running Automated Tests
 CALL vendor\bin\phpunit --config Tests\phpunit.xml
