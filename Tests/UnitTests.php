@@ -22,6 +22,7 @@ final class UnitTests extends TestCase
 	 *
 	 * @return void
 	 */
+	#[Group('basic')]
 	#[Test]
 	public function SanityCheck()
 	{
