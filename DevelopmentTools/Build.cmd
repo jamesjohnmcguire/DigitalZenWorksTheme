@@ -13,20 +13,6 @@ ECHO Checking npm...
 CALL npm install
 CALL npm outdated
 
-ECHO .
-ECHO Minifying assets...
-node DevelopmentTools/minify.js
-
-ECHO Checking syntax...
-CALL vendor\bin\parallel-lint --exclude .git --exclude vendor .
-
-ECHO Code Analysis...
-CALL vendor\bin\phpstan.phar.bat analyse
-
-ECHO Checking code styles...
-CALL vendor\bin\phpcs.bat -sp --standard=ruleset.xml SourceCode
-CALL vendor\bin\phpcs.bat -sp --standard=ruleset.tests.xml Tests
-
 IF "%2"=="update" GOTO update
 GOTO continue
 
@@ -47,10 +33,25 @@ MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js assets\js\v
 MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js.map assets\js\vendor
 
 :continue
+ECHO .
+ECHO Minifying assets...
+node DevelopmentTools/minify.js
+
+ECHO .
 ECHO Creating language files
 CD SourceCode
 CALL wp i18n make-pot . languages/digitalzen.pot
 CD ..
+
+ECHO Checking syntax...
+CALL vendor\bin\parallel-lint --exclude .git --exclude vendor .
+
+ECHO Code Analysis...
+CALL vendor\bin\phpstan.phar.bat analyse
+
+ECHO Checking code styles...
+CALL vendor\bin\phpcs.bat -sp --standard=ruleset.xml SourceCode
+CALL vendor\bin\phpcs.bat -sp --standard=ruleset.tests.xml Tests
 
 ECHO Running Automated Tests
 CALL vendor\bin\phpunit --config Tests\phpunit.xml
