@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Unit Tests.
+ *
+ * @package   DigitalZenWorks\DigitalZenTheme
+ * @author    James John McGuire <jamesjohnmcguire@gmail.com>
+ * @copyright 2021 - 2026 James John McGuire <jamesjohnmcguire@gmail.com>
+ * @link      https://github.com/jamesjohnmcguire/DigitalZenWorksTheme
+ */
+
 declare(strict_types=1);
 
 namespace DigitalZenWorks\DigitalZenTheme\UnitTests;
@@ -13,7 +22,9 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers All
+ * UnitTests class.
+ *
+ * Contains all the unit tests.
  */
 final class UnitTests extends TestCase
 {
