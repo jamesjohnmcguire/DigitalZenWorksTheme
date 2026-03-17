@@ -9,6 +9,7 @@
  * @link      https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
 
+declare(strict_types=1);
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

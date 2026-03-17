@@ -14,6 +14,8 @@
  * @link      https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
 
+declare(strict_types=1);
+
 get_header();
 ?>
 

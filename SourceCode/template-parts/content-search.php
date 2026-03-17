@@ -9,20 +9,25 @@
  * @link      https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
 
+declare(strict_types=1);
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <header class="entry-header">
+<?php
+$permalink = digitalzen_get_permalink_safe();
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php
-			digitalzen_posted_on();
-			digitalzen_posted_by();
-			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
+$title = sprintf(
+	'<h2 class="entry-title"><a href="%s" rel="bookmark">',
+	esc_url( $permalink ) );
+
+	the_title( $title, '</a></h2>' );
+
+if ( 'post' === get_post_type() )
+{
+	digitalzen_show_entry_meta();
+}
+?>
 	</header><!-- .entry-header -->
 
 	<?php digitalzen_post_thumbnail(); ?>

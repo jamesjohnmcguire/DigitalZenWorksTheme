@@ -9,6 +9,8 @@
  * @link      https://developer.wordpress.org/themes/basics/template-files/#template-partials
  */
 
+declare(strict_types=1);
+
 // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 
 /* translators: %s: CMS name, i.e. WordPress. */

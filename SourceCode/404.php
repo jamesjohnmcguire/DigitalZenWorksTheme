@@ -9,6 +9,8 @@
  * @link      https://codex.wordpress.org/Creating_an_Error_404_Page
  */
 
+declare(strict_types=1);
+
 get_header();
 ?>
 

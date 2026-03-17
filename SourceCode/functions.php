@@ -9,6 +9,8 @@
  * @link      https://developer.wordpress.org/themes/basics/theme-functions/
  */
 
+declare(strict_types=1);
+
 /**
  * Implement the Custom Header feature.
  */
@@ -111,6 +113,21 @@ if (!function_exists('dequeue_wpcf7_recaptcha_when_not_needed'))
 function digitalzen_content_width()
 {
 	$GLOBALS['content_width'] = apply_filters( 'digitalzen_content_width', 640 );
+}
+
+if ( ! function_exists( 'digitalzen_get_permalink_safe' ) )
+{
+	function digitalzen_get_permalink_safe()
+	{
+		$permalink = get_permalink();
+
+		if ( $permalink === false )
+		{
+			$permalink = '';
+		}
+
+		return $permalink;
+	}
 }
 
 if ( ! function_exists( 'digitalzen_setup' ) ) :
@@ -221,6 +238,21 @@ function digitalzen_scripts()
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+}
+
+if ( ! function_exists( 'digitalzen_show_entry_meta' ) )
+{
+	function digitalzen_show_entry_meta()
+	{
+?>
+      <div class="entry-meta">
+<?php
+		digitalzen_posted_on();
+		digitalzen_posted_by();
+?>
+      </div><!-- .entry-meta -->
+<?php
 	}
 }
 

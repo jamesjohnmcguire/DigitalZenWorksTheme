@@ -9,57 +9,66 @@
  * @link      https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
 
+declare(strict_types=1);
 ?>
+  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <header class="entry-header">
+<?php
+$is_singular = is_singular();
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+if ( true === $is_singular )
+{
+	the_title( '<h1 class="entry-title">', '</h1>' );
+}
+else
+{
+	$permalink = digitalzen_get_permalink_safe();
 
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				digitalzen_posted_on();
-				digitalzen_posted_by();
-				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+	$title_prefix = '<h2 class="entry-title"><a href="' . esc_url( $permalink ) .
+		'" rel="bookmark">';
+	the_title( $title_prefix, '</a></h2>' );
+}
 
-	<?php digitalzen_post_thumbnail(); ?>
+if ( 'post' === get_post_type() )
+{
+	digitalzen_show_entry_meta();
+}
+?>
+    </header><!-- .entry-header -->
 
-	<div class="entry-content">
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'digital-zen' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
+<?php digitalzen_post_thumbnail(); ?>
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'digital-zen' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
+    <div class="entry-content">
+<?php
+$class = [];
+$span = [ 'class' => $class ];
+$options =
+[
+	'span' => $span
+];
+
+$page_links =
+[
+	'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'digital-zen' ),
+	'after'  => '</div>'
+];
+
+the_content(
+	sprintf(
+		wp_kses(
+			/* translators: %s: Name of current post. Only visible to screen readers */
+			__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'digital-zen' ),
+			$options
+		),
+		wp_kses_post( get_the_title() )
+	)
+);
+
+wp_link_pages( $page_links );
+?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
+    <footer class="entry-footer">
 		<?php digitalzen_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+    </footer><!-- entry-footer -->
+  </article><!-- #post-<?php the_ID(); ?> -->
