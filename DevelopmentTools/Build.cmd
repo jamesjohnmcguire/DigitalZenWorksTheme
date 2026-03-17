@@ -43,16 +43,20 @@ CD SourceCode
 CALL wp i18n make-pot . languages/digitalzen.pot
 CD ..
 
+ECHO .
 ECHO Checking syntax...
 CALL vendor\bin\parallel-lint --exclude .git --exclude vendor .
 
+ECHO .
 ECHO Code Analysis...
 CALL vendor\bin\phpstan.phar.bat analyse
 
+ECHO .
 ECHO Checking code styles...
 CALL vendor\bin\phpcs.bat -sp --standard=ruleset.xml SourceCode
 CALL vendor\bin\phpcs.bat -sp --standard=ruleset.tests.xml Tests
 
+ECHO .
 ECHO Running Automated Tests
 CALL vendor\bin\phpunit --config Tests\phpunit.xml
 
