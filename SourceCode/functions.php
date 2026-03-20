@@ -115,6 +115,21 @@ function digitalzen_content_width()
 	$GLOBALS['content_width'] = apply_filters( 'digitalzen_content_width', 640 );
 }
 
+if ( ! function_exists( 'digitalzen_get_pagination_links' ) )
+{
+	function digitalzen_get_pagination_links()
+	{
+		$page_links =
+		[
+			'before' => '<div class="page-links">' .
+				esc_html__( 'Pages:', 'digital-zen' ),
+			'after'  => '</div>'
+		];
+
+		return $page_links;
+	}
+}
+
 if ( ! function_exists( 'digitalzen_get_permalink_safe' ) )
 {
 	function digitalzen_get_permalink_safe()
@@ -127,6 +142,83 @@ if ( ! function_exists( 'digitalzen_get_permalink_safe' ) )
 		}
 
 		return $permalink;
+	}
+}
+
+if ( ! function_exists( 'digitalzen_get_post_type_safe' ) )
+{
+	function digitalzen_get_post_type_safe()
+	{
+		$post_type = get_post_type();
+
+		if ( false === $post_type )
+		{
+			$post_type = null;
+		}
+
+		return $post_type;
+	}
+}
+
+if ( ! function_exists( 'digitalzen_posted_by' ) )
+{
+	/**
+	 * Prints HTML with meta information for the current author.
+	 *
+	 * @return void
+	 */
+	function digitalzen_posted_by()
+	{
+		/* translators: %s: post author. */
+		$prefix = esc_html_x( 'by %s', 'post author', 'digital-zen' );
+		$author_meta = get_the_author_meta( 'ID' );
+
+		$author_url = get_author_posts_url( $author_meta );
+		$author_url = esc_url( $author_url );
+
+		$author = get_the_author();
+		$author = esc_html( $author);
+
+		$span = '<span class="author vcard"><a class="url fn n" href="' .
+			$author_url . '">' . $author . '</a></span>';
+
+		$byline = sprintf( $prefix, $span );
+
+		echo '<span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+}
+
+if ( ! function_exists( 'digitalzen_posted_on' ) )
+{
+	/**
+	 * Prints HTML with meta information for the current post-date/time.
+	 *
+	 * @return void
+	 */
+	function digitalzen_posted_on()
+	{
+		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) )
+			 {
+			$time_string =
+				'<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		}
+
+		$time_string = sprintf(
+			$time_string,
+			esc_attr( get_the_date( DATE_W3C ) ),
+			esc_html( get_the_date() ),
+			esc_attr( get_the_modified_date( DATE_W3C ) ),
+			esc_html( get_the_modified_date() )
+		);
+
+		$posted_on = sprintf(
+			/* translators: %s: post date. */
+			esc_html_x( 'Posted on %s', 'post date', 'digital-zen' ),
+			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+		);
+
+		echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
@@ -253,6 +345,21 @@ if ( ! function_exists( 'digitalzen_show_entry_meta' ) )
 ?>
       </div><!-- .entry-meta -->
 <?php
+	}
+}
+
+if ( ! function_exists( 'digitalzen_get_span_allows' ) )
+{
+	function digitalzen_get_span_allows()
+	{
+		$class = [];
+		$span = [ 'class' => $class ];
+		$allows =
+		[
+			'span' => $span
+		];
+
+		return $allows;
 	}
 }
 

@@ -13,32 +13,42 @@ declare(strict_types=1);
 
 get_header();
 ?>
+  <main id="primary" class="site-main">
+<?php
+$have_posts = have_posts();
 
-	<main id="primary" class="site-main">
+while ( true ===$have_posts )
+{
+	the_post();
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+	$post_type = digitalzen_get_post_type_safe();
 
-			get_template_part( 'template-parts/content', get_post_type() );
+	get_template_part( 'template-parts/content', $post_type );
 
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'digital-zen' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'digital-zen' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
+	$prev_text = '<span class="nav-subtitle">' .
+		esc_html__( 'Previous:', 'digital-zen' ) .
+		'</span> <span class="nav-title">%title</span>';
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+	$next_text = '<span class="nav-subtitle">' .
+		esc_html__( 'Next:', 'digital-zen' ) .
+		'</span> <span class="nav-title">%title</span>';
 
-		endwhile; // End of the loop.
-		?>
+	the_post_navigation(
+		array(
+			'prev_text' => $prev_text,
+			'next_text' => $next_text,
+		)
+	);
 
-	</main><!-- #main -->
-
+	// If comments are open or we have at least one comment,
+	// load up the comment template.
+	if ( comments_open() || get_comments_number() )
+	{
+		comments_template();
+	}
+}
+?>
+  </main><!-- #main -->
 <?php
 get_sidebar();
 get_footer();

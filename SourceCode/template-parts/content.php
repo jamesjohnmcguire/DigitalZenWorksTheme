@@ -40,25 +40,16 @@ if ( 'post' === get_post_type() )
 
     <div class="entry-content">
 <?php
-$class = [];
-$span = [ 'class' => $class ];
-$options =
-[
-	'span' => $span
-];
+$allows = digitalzen_get_span_allows();
 
-$page_links =
-[
-	'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'digital-zen' ),
-	'after'  => '</div>'
-];
+$page_links = digitalzen_get_pagination_links();
 
 the_content(
 	sprintf(
 		wp_kses(
 			/* translators: %s: Name of current post. Only visible to screen readers */
 			__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'digital-zen' ),
-			$options
+			$allows
 		),
 		wp_kses_post( get_the_title() )
 	)

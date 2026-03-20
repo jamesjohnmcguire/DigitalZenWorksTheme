@@ -12,43 +12,56 @@
 declare(strict_types=1);
 ?>
 
-<section class="no-results not-found">
-	<header class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'digital-zen' ); ?></h1>
-	</header><!-- .page-header -->
+  <section class="no-results not-found">
+    <header class="page-header">
+      <h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'digital-zen' ); ?></h1>
+    </header><!-- .page-header -->
 
-	<div class="page-content">
-		<?php
-		if ( is_home() && current_user_can( 'publish_posts' ) ) :
+    <div class="page-content">
+<?php
+$is_home = is_home();
+$is_user_can_publish = current_user_can( 'publish_posts' );
+$is_search = is_search();
 
-			printf(
-				'<p>' . wp_kses(
-					/* translators: 1: link to WP admin new post page. */
-					__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'digital-zen' ),
-					array(
-						'a' => array(
-							'href' => array(),
-						),
-					)
-				) . '</p>',
-				esc_url( admin_url( 'post-new.php' ) )
-			);
+if ( true === $is_home && true === $is_user_can_publish )
+{
+	$message = 'Ready to publish your first post? <a href="%1$s">' .
+		'Get started here</a>.';
 
-		elseif ( is_search() ) :
-			?>
+	$anchor =
+	[
+		'a' => [ 'href' => [] ]
+	];
 
-			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'digital-zen' ); ?></p>
-			<?php
-			get_search_form();
+	$admin_url = admin_url( 'post-new.php' );
+	$admin_url = esc_url( $admin_url );
+	$escaped_message = wp_kses(
+		/* translators: 1: link to WP admin new post page. */
+		__( $message, 'digital-zen' ),
+		$anchor	);
 
-		else :
-			?>
+	$outer_message = '<p>' . $escaped_message . '</p>';
 
-			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'digital-zen' ); ?></p>
-			<?php
-			get_search_form();
-
-		endif;
-		?>
-	</div><!-- .page-content -->
-</section><!-- .no-results -->
+	printf( $outer_message, $admin_url );
+}
+elseif ( true === $is_search )
+{
+	$message = 'Sorry, but nothing matched your search terms. ' .
+		'Please try again with some different keywords.';
+?>
+      <p><?php esc_html_e( $message, 'digital-zen' ); ?></p>
+<?php
+	get_search_form();
+}
+else
+{
+	$message = 'It seems we can&rsquo;t find what you&rsquo;re ' .
+	'looking for. Perhaps searching can help.';
+?>
+      <p><?php esc_html_e( $message, 'digital-zen' ); ?></p>
+<?php
+	get_search_form();
+}
+?>
+    </div><!-- .page-content -->
+  </section><!-- .no-results -->

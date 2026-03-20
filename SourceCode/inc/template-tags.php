@@ -10,59 +10,6 @@
  * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-if ( ! function_exists( 'digitalzen_posted_on' ) ) :
-	/**
-	 * Prints HTML with meta information for the current post-date/time.
-	 *
-	 * @return void
-	 */
-	function digitalzen_posted_on()
-	{
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-		}
-
-		$time_string = sprintf(
-			$time_string,
-			esc_attr( get_the_date( DATE_W3C ) ),
-			esc_html( get_the_date() ),
-			esc_attr( get_the_modified_date( DATE_W3C ) ),
-			esc_html( get_the_modified_date() )
-		);
-
-		$posted_on = sprintf(
-			/* translators: %s: post date. */
-			esc_html_x( 'Posted on %s', 'post date', 'digital-zen' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-		);
-
-		echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
-	}
-endif;
-
-if ( ! function_exists( 'digitalzen_posted_by' ) ) :
-	/**
-	 * Prints HTML with meta information for the current author.
-	 *
-	 * @return void
-	 */
-	function digitalzen_posted_by()
-	{
-		$byline = sprintf(
-			/* translators: %s: post author. */
-			esc_html_x( 'by %s', 'post author', 'digital-zen' ),
-			'<span class="author vcard"><a class="url fn n" href="' .
-			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) .
-			'">' . esc_html( get_the_author() ) . '</a></span>'
-		);
-
-		echo '<span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
-	}
-endif;
-
 if ( ! function_exists( 'digitalzen_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
@@ -83,7 +30,10 @@ if ( ! function_exists( 'digitalzen_entry_footer' ) ) :
 
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'digital-zen' ) );
-			if ( $tags_list ) {
+			$is_error = is_wp_error( $tags_list );
+
+			if ( false === $is_error && $tags_list )
+			{
 				/* translators: 1: list of tags. */
 				$message = esc_html__( 'Tagged %1$s', 'digital-zen' );
 				printf( '<span class="tags-links">' . $message . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
