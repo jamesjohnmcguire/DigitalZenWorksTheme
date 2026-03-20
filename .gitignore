@@ -4,10 +4,9 @@
 
 /DigitalZenTheme.code-workspace
 
-SourceCode/style-rtl.css
-SourceCode/assets/css/*.css
-SourceCode/assets/css/min/*.css
-SourceCode/assets/js/min/*.js
+/SourceCode/languages/
 
-languages/digitalzen.pot
+SourceCode/assets/css/*.min.css
+SourceCode/assets/js/*.min.js
+
 SourceCode/DigitalZenTheme.zip
