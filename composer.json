@@ -18,7 +18,8 @@
 	},
 	"minimum-stability": "stable",
 	"require": {
-		"php": "^7.4 || ^8.0"
+		"php": "^7.4 || ^8.0",
+		"twbs/bootstrap": "^5.3"
 	},
 	"require-dev": {
 		"brain/monkey": "^2.6",
