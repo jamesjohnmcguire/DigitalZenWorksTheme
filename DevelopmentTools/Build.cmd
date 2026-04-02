@@ -3,15 +3,9 @@
 CD %~dp0
 CD ..
 
-ECHO Checking composer...
-CALL composer install --prefer-dist
-CALL composer validate --strict
-ECHO outdated:
-CALL composer outdated --direct
+CALL composerStatus.cmd
 
-ECHO Checking npm...
-CALL npm install
-CALL npm outdated
+CALL npmStatus.cmd
 
 IF "%2"=="update" GOTO update
 GOTO continue
@@ -58,7 +52,7 @@ CALL vendor\bin\phpcs.bat -sp --standard=ruleset.tests.xml Tests
 
 ECHO .
 ECHO Running Automated Tests
-CALL vendor\bin\phpunit --config Tests\phpunit.xml
+CALL vendor\bin\phpunit --configuration Tests\phpunit.xml
 
 IF "%1"=="deploy" GOTO deploy
 GOTO finish
