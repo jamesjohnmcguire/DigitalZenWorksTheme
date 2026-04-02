@@ -1,17 +1,40 @@
 #!/bin/bash
+set -euo pipefail   # strict mode
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 cd ..
 
-echo Checking composer...
+echo
+echo -e "\e[36mChecking composer...\e[0m"
 composer install --prefer-dist
 composer validate --strict
-echo outdated:
-composer outdated --direct
+echo
+echo -e "\e[36mOutdated:\e[0m"
+composer outdated --direct || true
+echo
+echo -e "\e[36mSecurity audit:\e[0m"
+composer audit
 
-echo Checking npm...
+echo
+echo -e "\e[36mChecking npm...\e[0m"
 npm install
-npm outdated
+echo
+echo -e "\e[36mOutdated:\e[0m"
+npm outdated --depth=0 || true
+echo
+echo -e "\e[36mSecurity audit (high level):\e[0m"
+npm audit --audit-level=high
+echo
+echo -e "\e[36mSecurity audit (normal level):\e[0m"
+npm audit
+
+echo
+echo -e "\e[36mChecking JavaScript...\e[0m"
+npx eslint DevelopmentTools/minify.js
+
+echo
+echo -e "\e[36mMinifying assets...\e[0m"
+node DevelopmentTools/minify.js
 
 echo Checking syntax...
 vendor/bin/parallel-lint --exclude .git --exclude vendor .
