@@ -4,6 +4,7 @@
 	"license": "MIT",
 	"main": "index.php",
 	"name": "@digitalzenworks/digitalzentheme",
+	"type": "module",
 	"version": "0.1.1",
 	"keywords": [
 		"WordPress",
