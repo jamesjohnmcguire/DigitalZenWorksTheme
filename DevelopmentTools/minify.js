@@ -1,10 +1,67 @@
 #!/usr/bin/env node
 
-const esbuild = require('esbuild');
-const fs = require('fs');
-const path = require('path');
+import * as esbuild from 'esbuild';
+import { promises as fs } from 'fs';
+import { join } from 'path';
 
-process.chdir(path.join(__dirname, '..'));
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+async function minfiyCssFiles(cssFiles, minifiedCssFile)
+{
+	let cssContentRaw = await Promise.all(
+		cssFiles.map(f => fs.readFile(f, 'utf8')));
+
+	// Remove all @charset declarations and let esbuild add it if needed
+	cssContentRaw = cssContentRaw.map(
+		content => content.replace(/@charset\s+["'][^"']+["'];?\s*/gi, ''));
+
+	const cssContent = cssContentRaw.join('\n');
+
+	const stdIn =
+	{
+		contents: cssContent,
+		loader: 'css'
+	};
+
+	const parameters =
+	{
+		stdin: stdIn,
+		minify: true,
+		outfile: minifiedCssFile
+	};
+
+	esbuild.buildSync(parameters);
+}
+
+async function minfiyJsFiles(jsFiles, minifiedJsFile)
+{
+	const jsContentRaw = await Promise.all(
+		jsFiles.map(f => fs.readFile(f, 'utf8')));
+
+	const jsContent = jsContentRaw.join('\n');
+
+	const stdIn =
+	{
+		contents: jsContent,
+		loader: 'js',
+	};
+
+	const parameters =
+	{
+		stdin: stdIn,
+		minify: true,
+		outfile: minifiedJsFile
+	};
+
+	esbuild.buildSync(parameters);
+}
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const joined = join(__dirname, '..');
+process.chdir(joined);
 
 const SOURCE = 'SourceCode/assets';
 const DESTINATION = 'SourceCode/assets';
@@ -20,29 +77,8 @@ const jsFiles =
   `${SOURCE}/js/navigation.js`
 ];
 
-// Remove all @charset declarations and let esbuild add it if needed
-const cssContent = cssFiles
-  .map(f => fs.readFileSync(f, 'utf8'))
-  .map(content => content.replace(/@charset\s+["'][^"']+["'];?\s*/gi, ''))
-  .join('\n');
+minfiyCssFiles(cssFiles, `${DESTINATION}/css/default.min.css`);
 
-  esbuild.buildSync({
-  stdin: {
-    contents: cssContent,
-    loader: 'css',
-  },
-  minify: true,
-  outfile: `${DESTINATION}/css/default.min.css`,
-});
-
-const jsContent = jsFiles.map(f => fs.readFileSync(f, 'utf8')).join('\n');
-esbuild.buildSync({
-  stdin: {
-    contents: jsContent,
-    loader: 'js',
-  },
-  minify: true,
-  outfile: `${DESTINATION}/js/scripts.min.js`,
-});
+minfiyJsFiles(jsFiles, `${DESTINATION}/js/scripts.min.js`);
 
 console.log('Minify complete!');
