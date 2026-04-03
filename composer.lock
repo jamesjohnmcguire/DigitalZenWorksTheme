@@ -2271,12 +2271,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "61130731cdf896e60028ed82193a1bc3c50d032a"
+                "reference": "958bc6ccdb194912236265e4f36256e55bb0c9da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/61130731cdf896e60028ed82193a1bc3c50d032a",
-                "reference": "61130731cdf896e60028ed82193a1bc3c50d032a",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/958bc6ccdb194912236265e4f36256e55bb0c9da",
+                "reference": "958bc6ccdb194912236265e4f36256e55bb0c9da",
                 "shasum": ""
             },
             "conflict": {
@@ -2327,9 +2327,9 @@
                 "aureuserp/aureuserp": "<1.3.0.0-beta1",
                 "austintoddj/canvas": "<=3.4.2",
                 "auth0/auth0-php": ">=3.3,<=8.18",
-                "auth0/login": "<7.20",
-                "auth0/symfony": "<=5.5",
-                "auth0/wordpress": "<=5.4",
+                "auth0/login": "<=7.20",
+                "auth0/symfony": "<=5.7",
+                "auth0/wordpress": "<=5.5",
                 "automad/automad": "<2.0.0.0-alpha5",
                 "automattic/jetpack": "<9.8",
                 "avideo/avideo": "<=26",
@@ -3312,7 +3312,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-02T00:32:12+00:00"
+            "time": "2026-04-03T04:48:53+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -4717,12 +4717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "2286543a522dce7dab16dbf405decdfab3aae9aa"
+                "reference": "05bf6138960dfefe20d02adf148e3ed91c856bb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/2286543a522dce7dab16dbf405decdfab3aae9aa",
-                "reference": "2286543a522dce7dab16dbf405decdfab3aae9aa",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/05bf6138960dfefe20d02adf148e3ed91c856bb7",
+                "reference": "05bf6138960dfefe20d02adf148e3ed91c856bb7",
                 "shasum": ""
             },
             "require": {
@@ -4793,7 +4793,7 @@
                 "issues": "https://github.com/wp-cli/wp-cli/issues",
                 "source": "https://github.com/wp-cli/wp-cli"
             },
-            "time": "2026-04-01T08:04:57+00:00"
+            "time": "2026-04-02T07:48:16+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
