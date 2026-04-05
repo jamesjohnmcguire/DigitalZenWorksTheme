@@ -7,6 +7,10 @@ CALL composerStatus.cmd
 
 CALL npmStatus.cmd
 
+ECHO .
+ECHO Checking JavaScript...
+CALL npx eslint DevelopmentTools/minify.js
+
 IF "%2"=="update" GOTO update
 GOTO continue
 

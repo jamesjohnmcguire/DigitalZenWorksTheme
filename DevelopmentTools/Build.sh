@@ -36,18 +36,22 @@ echo
 echo -e "\e[36mMinifying assets...\e[0m"
 node DevelopmentTools/minify.js
 
-echo Checking syntax...
+echo
+echo -e "\e[36mChecking code syntax...\e[0m"
 vendor/bin/parallel-lint --exclude .git --exclude vendor .
 
-echo ""
-echo Code Analysis...
+echo
+echo -e "\e[36mCode Analysis...\e[0m"
 vendor/bin/phpstan.phar analyse
 
-echo Checking code styles...
+echo
+echo -e "\e[36mChecking code styles...\e[0m"
 vendor/bin/phpcs -sp --standard=ruleset.xml SourceCode
 vendor/bin/phpcs -sp --standard=ruleset.tests.xml Tests
 
-vendor/bin/phpunit --config Tests/phpunit.xml
+echo
+echo -e "\e[36mRunning Automated Tests...\e[0m"
+vendor/bin/phpunit --configuration Tests/phpunit.xml
 
 if [[ $1 == "release" ]] ; then
 	echo "Release Is Set!"
