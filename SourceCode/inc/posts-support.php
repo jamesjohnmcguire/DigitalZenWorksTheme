@@ -35,13 +35,15 @@ function digitalzen_get_status_line( $authordata, $is_excerpt = true, $show_rss 
 			'">RSS</a></li>' .
 			'<li><span class="fa fa-thumbs-o-up"></span><a href="' . $ping .
 			'">PING</a></li>';
-	} else {
+	}
+	else {
 		$rss = '';
 	}
 
 	if ( true === $is_excerpt ) {
 		$link = 'Read more';
-	} else {
+	}
+	else {
 		$link = 'Bookmark';
 	}
 	?>

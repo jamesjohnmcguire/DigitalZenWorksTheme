@@ -25,20 +25,20 @@ function digitalzen_custom_header_setup()
 		'custom-header',
 		apply_filters(
 			'digitalzen_custom_header_args',
-			array(
+			[
 				'default-image'      => '',
 				'default-text-color' => '000000',
 				'width'              => 1000,
 				'height'             => 250,
 				'flex-height'        => true,
 				'wp-head-callback'   => 'digitalzen_header_style',
-			)
+			]
 		)
 	);
 }
 add_action( 'after_setup_theme', 'digitalzen_custom_header_setup' );
 
-if ( ! function_exists( 'digitalzen_header_style' ) ) :
+if ( ! function_exists( 'digitalzen_header_style' ) ) {
 	/**
 	 * Styles the header image and text displayed on the blog.
 	 *
@@ -63,7 +63,7 @@ if ( ! function_exists( 'digitalzen_header_style' ) ) :
 		<style type="text/css">
 		<?php
 		// Has the text been hidden?
-		if ( ! display_header_text() ) :
+		if ( ! display_header_text() ) {
 			?>
 			.site-title,
 			.site-description {
@@ -72,14 +72,15 @@ if ( ! function_exists( 'digitalzen_header_style' ) ) :
 				}
 			<?php
 			// If the user has set a custom color for the text use that.
-		else :
+		}
+		else {
 			?>
 			.site-title a,
 			.site-description {
 				color: #<?php echo esc_attr( $header_text_color ); ?>;
 			}
-		<?php endif; ?>
+		<?php } ?>
 		</style>
 		<?php
 	}
-endif;
+}

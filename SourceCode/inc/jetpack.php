@@ -22,11 +22,11 @@ function digitalzen_jetpack_setup()
 	// Add theme support for Infinite Scroll.
 	add_theme_support(
 		'infinite-scroll',
-		array(
+		[
 			'container' => 'main',
 			'render'    => 'digitalzen_infinite_scroll_render',
 			'footer'    => 'page',
-		)
+		]
 	);
 
 	// Add theme support for Responsive Videos.
@@ -35,21 +35,21 @@ function digitalzen_jetpack_setup()
 	// Add theme support for Content Options.
 	add_theme_support(
 		'jetpack-content-options',
-		array(
-			'post-details'    => array(
+		[
+			'post-details'    => [
 				'stylesheet' => 'digitalzen-style',
 				'date'       => '.posted-on',
 				'categories' => '.cat-links',
 				'tags'       => '.tags-links',
 				'author'     => '.byline',
 				'comment'    => '.comments-link',
-			),
-			'featured-images' => array(
+			],
+			'featured-images' => [
 				'archive' => true,
 				'post'    => true,
 				'page'    => true,
-			),
-		)
+			],
+		]
 	);
 }
 add_action( 'after_setup_theme', 'digitalzen_jetpack_setup' );
@@ -63,12 +63,13 @@ function digitalzen_infinite_scroll_render()
 {
 	while ( have_posts() ) {
 		the_post();
-		if ( is_search() ) :
+		if ( is_search() ) {
 			get_template_part( 'template-parts/content', 'search' );
-		else :
+		}
+		else {
 			$post_type = digitalzen_get_post_type_safe();
 
 			get_template_part( 'template-parts/content', $post_type );
-		endif;
+		}
 	}
 }

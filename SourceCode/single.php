@@ -17,7 +17,7 @@ get_header();
 <?php
 $have_posts = have_posts();
 
-while ( true ===$have_posts )
+while ( true === $have_posts )
 {
 	the_post();
 
@@ -34,10 +34,10 @@ while ( true ===$have_posts )
 		'</span> <span class="nav-title">%title</span>';
 
 	the_post_navigation(
-		array(
+		[
 			'prev_text' => $prev_text,
 			'next_text' => $next_text,
-		)
+		]
 	);
 
 	// If comments are open or we have at least one comment,

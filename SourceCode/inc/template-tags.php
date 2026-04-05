@@ -10,7 +10,7 @@
  * @license   GPLv2 or later http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-if ( ! function_exists( 'digitalzen_entry_footer' ) ) :
+if ( ! function_exists( 'digitalzen_entry_footer' ) ) {
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 *
@@ -47,11 +47,11 @@ if ( ! function_exists( 'digitalzen_entry_footer' ) ) :
 					wp_kses(
 						/* translators: %s: post title */
 						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'digital-zen' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
+						[
+							'span' => [
+								'class' => [],
+							],
+						]
 					),
 					wp_kses_post( get_the_title() )
 				)
@@ -64,11 +64,11 @@ if ( ! function_exists( 'digitalzen_entry_footer' ) ) :
 				wp_kses(
 					/* translators: %s: Name of current post. Only visible to screen readers */
 					__( 'Edit <span class="screen-reader-text">%s</span>', 'digital-zen' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
+					[
+						'span' => [
+							'class' => [],
+						],
+					]
 				),
 				wp_kses_post( get_the_title() )
 			),
@@ -76,9 +76,9 @@ if ( ! function_exists( 'digitalzen_entry_footer' ) ) :
 			'</span>'
 		);
 	}
-endif;
+}
 
-if ( ! function_exists( 'digitalzen_post_thumbnail' ) ) :
+if ( ! function_exists( 'digitalzen_post_thumbnail' ) ) {
 	/**
 	 * Displays an optional post thumbnail.
 	 *
@@ -93,36 +93,37 @@ if ( ! function_exists( 'digitalzen_post_thumbnail' ) ) :
 			return;
 		}
 
-		if ( is_singular() ) :
+		if ( is_singular() ) {
 			?>
 
 			<div class="post-thumbnail">
 				<?php the_post_thumbnail(); ?>
 			</div><!-- .post-thumbnail -->
 
-		<?php else : ?>
-
+		<?php
+        }
+		else {
+        ?>
 			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 				<?php
 					the_post_thumbnail(
 						'post-thumbnail',
-						array(
+						[
 							'alt' => the_title_attribute(
-								array(
-									'echo' => false,
-								)
+								[ 'echo' => false ]
 							),
-						)
+						]
 					);
 				?>
 			</a>
 
 			<?php
-		endif; // End is_singular().
+		}
+// End is_singular().
 	}
-endif;
+}
 
-if ( ! function_exists( 'digitalzen_wp_body_open' ) ) :
+if ( ! function_exists( 'digitalzen_wp_body_open' ) ) {
 	/**
 	 * Shim for sites older than 5.2.
 	 *
@@ -134,4 +135,4 @@ if ( ! function_exists( 'digitalzen_wp_body_open' ) ) :
 	{
 		do_action( 'digitalzen_wp_body_open' );
 	}
-endif;
+}

@@ -58,7 +58,7 @@ add_action(
 	100);
 add_action( 'wp_enqueue_scripts', 'digitalzen_scripts' );
 
-if (!function_exists('dequeue_polyfill'))
+if ( ! function_exists( 'dequeue_polyfill' ) )
 {
 	function dequeue_polyfill()
 	{
@@ -70,23 +70,23 @@ if (!function_exists('dequeue_polyfill'))
 	}
 }
 
-if (!function_exists('dequeue_wpcf7_recaptcha_when_not_needed'))
+if ( ! function_exists( 'dequeue_wpcf7_recaptcha_when_not_needed' ) )
 {
 	function dequeue_wpcf7_recaptcha_when_not_needed()
 	{
 		// Only check for the frontend
-		if (!is_admin())
+		if ( ! is_admin() )
 		{
 			// Check if the current post content contains
 			// a Contact Form 7 shortcode.
 			global $post;
 
-			if (!isset($post) ||
-				!has_shortcode($post->post_content, 'contact-form-7'))
+			if ( ! isset( $post ) ||
+				! has_shortcode( $post->post_content, 'contact-form-7' ) )
 			{
 				// Dequeue the reCAPTCHA script and its inline data.
-				wp_dequeue_script('wpcf7-recaptcha-js');
-				wp_deregister_script('wpcf7-recaptcha-js');
+				wp_dequeue_script( 'wpcf7-recaptcha-js' );
+				wp_deregister_script( 'wpcf7-recaptcha-js' );
 
 				// Remove the inline script.
 				add_filter(
@@ -177,7 +177,7 @@ if ( ! function_exists( 'digitalzen_posted_by' ) )
 		$author_url = esc_url( $author_url );
 
 		$author = get_the_author();
-		$author = esc_html( $author);
+		$author = esc_html( $author );
 
 		$span = '<span class="author vcard"><a class="url fn n" href="' .
 			$author_url . '">' . $author . '</a></span>';
@@ -222,7 +222,7 @@ if ( ! function_exists( 'digitalzen_posted_on' ) )
 	}
 }
 
-if ( ! function_exists( 'digitalzen_setup' ) ) :
+if ( ! function_exists( 'digitalzen_setup' ) ) {
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -262,9 +262,9 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
-			array(
+			[
 				'menu-1' => esc_html__( 'Primary', 'digital-zen' ),
-			)
+			]
 		);
 
 		/*
@@ -273,7 +273,7 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 		 */
 		add_theme_support(
 			'html5',
-			array(
+			[
 				'search-form',
 				'comment-form',
 				'comment-list',
@@ -281,7 +281,7 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 				'caption',
 				'style',
 				'script',
-			)
+			]
 		);
 
 		// Set up the WordPress core custom background feature.
@@ -289,10 +289,10 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 			'custom-background',
 			apply_filters(
 				'digitalzen_custom_background_args',
-				array(
+				[
 					'default-color' => 'ffffff',
 					'default-image' => '',
-				)
+				]
 			)
 		);
 
@@ -306,15 +306,15 @@ if ( ! function_exists( 'digitalzen_setup' ) ) :
 		 */
 		add_theme_support(
 			'custom-logo',
-			array(
+			[
 				'height'      => 250,
 				'width'       => 250,
 				'flex-width'  => true,
 				'flex-height' => true,
-			)
+			]
 		);
 	}
-endif;
+}
 
 /**
  * Enqueue scripts and styles.
@@ -323,10 +323,10 @@ endif;
  */
 function digitalzen_scripts()
 {
-	wp_enqueue_style( 'digitalzen-style', get_stylesheet_uri(), array(), DIGITALZEN_VERSION );
+	wp_enqueue_style( 'digitalzen-style', get_stylesheet_uri(), [], DIGITALZEN_VERSION );
 	wp_style_add_data( 'digitalzen-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'digitalzen-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DIGITALZEN_VERSION, true );
+	wp_enqueue_script( 'digitalzen-navigation', get_template_directory_uri() . '/js/navigation.js', [], DIGITALZEN_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -372,7 +372,7 @@ if ( ! function_exists( 'digitalzen_get_span_allows' ) )
 function digitalzen_widgets_init()
 {
 	register_sidebar(
-		array(
+		[
 			'name'          => esc_html__( 'Sidebar', 'digital-zen' ),
 			'id'            => 'sidebar-1',
 			'description'   => esc_html__( 'Add widgets here.', 'digital-zen' ),
@@ -380,21 +380,21 @@ function digitalzen_widgets_init()
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		)
+		]
 	);
 }
 
-if (!function_exists('remove_wpcf7_recaptcha_inline_script'))
+if ( ! function_exists( 'remove_wpcf7_recaptcha_inline_script' ) )
 {
 	// Remove unused inline script tags for contact forms and reCAPTCHA.
-	function remove_wpcf7_recaptcha_inline_script($tag, $handle)
+	function remove_wpcf7_recaptcha_inline_script( $tag, $handle )
 	{
-		if ($handle === 'contact-form-7' ||
+		if ( $handle === 'contact-form-7' ||
 			$handle === 'google-recaptcha' ||
 			$handle === 'swv' ||
 			$handle === 'wp-i18n' ||
 			$handle === 'wpcf7-recaptcha' ||
-			$handle === 'wpcf7-recaptcha-js-before')
+			$handle === 'wpcf7-recaptcha-js-before' )
 		{
 			$tag = '';
 		}
