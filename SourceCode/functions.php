@@ -60,7 +60,7 @@ add_action( 'wp_enqueue_scripts', 'digitalzen_scripts' );
 
 if ( ! function_exists( 'dequeue_polyfill' ) )
 {
-	function dequeue_polyfill()
+	function dequeue_polyfill() : void
 	{
 		wp_dequeue_script( 'regenerator-runtime' );
 		wp_deregister_script( 'regenerator-runtime' );
@@ -72,7 +72,7 @@ if ( ! function_exists( 'dequeue_polyfill' ) )
 
 if ( ! function_exists( 'dequeue_wpcf7_recaptcha_when_not_needed' ) )
 {
-	function dequeue_wpcf7_recaptcha_when_not_needed()
+	function dequeue_wpcf7_recaptcha_when_not_needed() : void
 	{
 		// Only check for the frontend
 		if ( ! is_admin() )
@@ -110,14 +110,14 @@ if ( ! function_exists( 'dequeue_wpcf7_recaptcha_when_not_needed' ) )
  * @global int $content_width
  * @return void
  */
-function digitalzen_content_width()
+function digitalzen_content_width() : void
 {
 	$GLOBALS['content_width'] = apply_filters( 'digitalzen_content_width', 640 );
 }
 
 if ( ! function_exists( 'digitalzen_get_pagination_links' ) )
 {
-	function digitalzen_get_pagination_links()
+	function digitalzen_get_pagination_links() : array
 	{
 		$page_links =
 		[
@@ -132,7 +132,7 @@ if ( ! function_exists( 'digitalzen_get_pagination_links' ) )
 
 if ( ! function_exists( 'digitalzen_get_permalink_safe' ) )
 {
-	function digitalzen_get_permalink_safe()
+	function digitalzen_get_permalink_safe() : string
 	{
 		$permalink = get_permalink();
 
@@ -147,7 +147,7 @@ if ( ! function_exists( 'digitalzen_get_permalink_safe' ) )
 
 if ( ! function_exists( 'digitalzen_get_post_type_safe' ) )
 {
-	function digitalzen_get_post_type_safe()
+	function digitalzen_get_post_type_safe() : ?string
 	{
 		$post_type = get_post_type();
 
@@ -167,13 +167,15 @@ if ( ! function_exists( 'digitalzen_posted_by' ) )
 	 *
 	 * @return void
 	 */
-	function digitalzen_posted_by()
+	function digitalzen_posted_by() : void
 	{
 		/* translators: %s: post author. */
 		$prefix = esc_html_x( 'by %s', 'post author', 'digital-zen' );
-		$author_meta = get_the_author_meta( 'ID' );
 
-		$author_url = get_author_posts_url( $author_meta );
+		$author_id = get_the_author_meta( 'ID' );
+		$author_id = (int) $author_id;
+
+		$author_url = get_author_posts_url( $author_id );
 		$author_url = esc_url( $author_url );
 
 		$author = get_the_author();
@@ -195,27 +197,91 @@ if ( ! function_exists( 'digitalzen_posted_on' ) )
 	 *
 	 * @return void
 	 */
-	function digitalzen_posted_on()
+	function digitalzen_posted_on() : void
 	{
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) )
-			 {
-			$time_string =
-				'<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		$date = get_the_date( );
+		$is_number = is_int( $date );
+
+		if ( false == $is_number && false !== $date )
+		{
+			$date = esc_url( $date );
+		}
+		else
+		{
+			$date = '';
+		}
+
+		$date_w3c = get_the_date( DATE_W3C );
+		$is_number = is_int( $date_w3c );
+
+		if ( false == $is_number && false !== $date_w3c )
+		{
+			$date_w3c = esc_attr( $date_w3c );
+		}
+		else
+		{
+			$date_w3c = '';
+		}
+
+		$modified_date = get_the_modified_date( );
+		$is_number = is_int( $modified_date );
+
+		if ( false == $is_number && false !== $modified_date )
+		{
+			$modified_date = esc_html( $modified_date );
+		}
+		else
+		{
+			$modified_date = '';
+		}
+
+		$modified_date_w3c = get_the_modified_date( DATE_W3C );
+		$is_number = is_int( $modified_date_w3c );
+
+		if ( false == $is_number && false !== $modified_date_w3c )
+		{
+			$modified_date_w3c = esc_attr( $modified_date_w3c );
+		}
+		else
+		{
+			$modified_date_w3c = '';
+		}
+
+		$time_unix = get_the_time( 'U' );
+		$modified_time_unix = get_the_modified_time( 'U' );
+		$time_string = '<time class="entry-date published updated" ' .
+			'datetime="%1$s">%2$s</time>';
+
+		if ( $time_unix !== $modified_time_unix )
+		{
+			$time_string = '<time class="entry-date published" ' .
+				'datetime="%1$s">%2$s</time><time class="updated" ' .
+				'datetime="%3$s">%4$s</time>';
 		}
 
 		$time_string = sprintf(
 			$time_string,
-			esc_attr( get_the_date( DATE_W3C ) ),
-			esc_html( get_the_date() ),
-			esc_attr( get_the_modified_date( DATE_W3C ) ),
-			esc_html( get_the_modified_date() )
+			$date_w3c,
+			$date,
+			$modified_date_w3c,
+			$modified_date
 		);
+
+		$perma_link = get_permalink();
+
+		if ( false !== $perma_link )
+		{
+			$url = esc_url( $perma_link );
+		}
+		else
+		{
+			$url = '';
+		}
 
 		$posted_on = sprintf(
 			/* translators: %s: post date. */
 			esc_html_x( 'Posted on %s', 'post date', 'digital-zen' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+			'<a href="' . $url . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
 		echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -232,7 +298,7 @@ if ( ! function_exists( 'digitalzen_setup' ) ) {
 	 *
 	 * @return void
 	 */
-	function digitalzen_setup()
+	function digitalzen_setup() : void
 	{
 		/*
 		 * Make theme available for translation.
@@ -321,21 +387,30 @@ if ( ! function_exists( 'digitalzen_setup' ) ) {
  *
  * @return void
  */
-function digitalzen_scripts()
+function digitalzen_scripts() : void
 {
-	wp_enqueue_style( 'digitalzen-style', get_stylesheet_uri(), [], DIGITALZEN_VERSION );
+	wp_enqueue_style(
+		'digitalzen-style',
+		get_stylesheet_uri(),
+		[],
+		DIGITALZEN_VERSION );
 	wp_style_add_data( 'digitalzen-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'digitalzen-navigation', get_template_directory_uri() . '/js/navigation.js', [], DIGITALZEN_VERSION, true );
+	wp_enqueue_script(
+		'digitalzen-navigation',
+		get_template_directory_uri() . '/js/navigation.js',
+		[],
+		DIGITALZEN_VERSION, true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+	{
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 
 if ( ! function_exists( 'digitalzen_show_entry_meta' ) )
 {
-	function digitalzen_show_entry_meta()
+	function digitalzen_show_entry_meta() : void
 	{
 ?>
       <div class="entry-meta">
@@ -350,7 +425,7 @@ if ( ! function_exists( 'digitalzen_show_entry_meta' ) )
 
 if ( ! function_exists( 'digitalzen_get_span_allows' ) )
 {
-	function digitalzen_get_span_allows()
+	function digitalzen_get_span_allows() : array
 	{
 		$class = [];
 		$span = [ 'class' => $class ];
@@ -384,17 +459,24 @@ function digitalzen_widgets_init()
 	);
 }
 
-if ( ! function_exists( 'remove_wpcf7_recaptcha_inline_script' ) )
+if ( ! function_exists(
+	'\DigitalZenWorksTheme\remove_wpcf7_recaptcha_inline_script' ) )
 {
-	// Remove unused inline script tags for contact forms and reCAPTCHA.
+	/**
+	 * Remove reCAPTCHA inline script.
+	 *
+	 * @param string $tag    The script tag.
+	 * @param string $handle The script handle.
+	 * @return string The modified script tag.
+	 */
 	function remove_wpcf7_recaptcha_inline_script( $tag, $handle )
 	{
-		if ( $handle === 'contact-form-7' ||
-			$handle === 'google-recaptcha' ||
-			$handle === 'swv' ||
-			$handle === 'wp-i18n' ||
-			$handle === 'wpcf7-recaptcha' ||
-			$handle === 'wpcf7-recaptcha-js-before' )
+		if ( 'contact-form-7' === $handle ||
+			'google-recaptcha' === $handle ||
+			'swv' === $handle ||
+			'wp-i18n' === $handle ||
+			'wpcf7-recaptcha' === $handle ||
+			'wpcf7-recaptcha-js-before' === $handle )
 		{
 			$tag = '';
 		}

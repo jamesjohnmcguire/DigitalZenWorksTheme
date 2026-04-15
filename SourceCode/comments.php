@@ -26,29 +26,46 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	<?php
-	// You can start editing here -- including this comment!
-	if ( have_comments() ) {
-		?>
+<?php
+	if ( have_comments() )
+	{
+?>
 		<h2 class="comments-title">
-			<?php
-			$digitalzen_comment_count = get_comments_number();
-			if ( '1' === $digitalzen_comment_count ) {
-				printf(
-					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'digital-zen' ),
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			}
-			else {
-				printf(
-					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $digitalzen_comment_count, 'comments title', 'digital-zen' ) ),
-					number_format_i18n( $digitalzen_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			}
-			?>
+<?php
+		$digitalzen_comment_count = get_comments_number();
+		$digitalzen_comment_count = (int) $digitalzen_comment_count;
+
+		if ( 1 === $digitalzen_comment_count )
+		{
+			/* translators: 1: title. */
+			$message = 	esc_html__(
+					'One thought on &ldquo;%1$s&rdquo;', 'digital-zen' );
+
+			$title = get_the_title();
+			$title = wp_kses_post( $title );
+			$span = '<span>' . $title . '</span>';
+
+			printf( $message, $span );
+		}
+		else
+		{
+				/* translators: 1: comment count number, 2: title. */
+			$message = 	_nx(
+				'%1$s thought on &ldquo;%2$s&rdquo;',
+				'%1$s thoughts on &ldquo;%2$s&rdquo;',
+				$digitalzen_comment_count,
+				'comments title',
+				'digital-zen' );
+			$message = esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $digitalzen_comment_count, 'comments title', 'digital-zen' ) );
+
+			printf(
+				/* translators: 1: comment count number, 2: title. */
+				$message,
+				number_format_i18n( $digitalzen_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'<span>' . wp_kses_post( get_the_title() ) . '</span>'
+			);
+		}
+?>
 		</h2><!-- .comments-title -->
 
 		<?php the_comments_navigation(); ?>
