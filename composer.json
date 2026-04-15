@@ -13,11 +13,11 @@
 	],
 	"config": {
 		"preferred-install": "dist",
+		"process-timeout": 0,
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"phpstan/extension-installer": true
-		},
-		"process-timeout": 0
+		}
 	},
 	"require": {
 		"php": "^7.4 || ^8.0",
@@ -26,6 +26,7 @@
 	"require-dev": {
 		"brain/monkey": "^2.6",
 		"dealerdirect/phpcodesniffer-composer-installer": "*",
+		"pdepend/pdepend": "^2.16.1",
 		"php-parallel-lint/php-console-highlighter": "^1.0",
 		"php-parallel-lint/php-parallel-lint": "^1.2.0",
 		"php-stubs/wordpress-stubs": "^6.8",
@@ -33,6 +34,7 @@
 		"phpcompatibility/phpcompatibility-wp": "*",
 		"phpcsstandards/phpcsdevtools": "^1.0",
 		"phpcsstandards/phpcsextra": "^1.2.0",
+		"phpmd/phpmd" : "dev-master",
 		"phpstan/extension-installer": "^1.4",
 		"phpstan/phpstan": "^2.1",
 		"phpstan/phpstan-deprecation-rules": "^2.0",
@@ -43,5 +45,8 @@
 		"wp-cli/i18n-command": "^2.7",
 		"wp-cli/wp-cli": "^2.13",
 		"wp-coding-standards/wpcs": "*"
+	},
+	"scripts": {
+		"test": "vendor/bin/phpunit --configuration Tests/phpunit.xml"
 	}
 }
