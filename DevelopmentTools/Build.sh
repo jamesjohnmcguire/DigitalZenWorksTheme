@@ -4,29 +4,9 @@ set -euo pipefail   # strict mode
 cd "$(dirname "${BASH_SOURCE[0]}")"
 cd ..
 
-echo
-echo -e "\e[36mChecking composer...\e[0m"
-composer install --prefer-dist
-composer validate --strict
-echo
-echo -e "\e[36mOutdated:\e[0m"
-composer outdated --direct || true
-echo
-echo -e "\e[36mSecurity audit:\e[0m"
-composer audit
+DevelopmentTools/Common/Commands/composerStatus.sh
 
-echo
-echo -e "\e[36mChecking npm...\e[0m"
-npm install
-echo
-echo -e "\e[36mOutdated:\e[0m"
-npm outdated --depth=0 || true
-echo
-echo -e "\e[36mSecurity audit (high level):\e[0m"
-npm audit --audit-level=high
-echo
-echo -e "\e[36mSecurity audit (normal level):\e[0m"
-npm audit
+DevelopmentTools/Common/Commands/npmStatus.sh
 
 echo
 echo -e "\e[36mChecking JavaScript...\e[0m"
