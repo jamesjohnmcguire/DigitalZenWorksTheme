@@ -17,7 +17,7 @@
 	"devDependencies": {
 		"@eslint/css": "^1.0.0",
 		"@eslint/js": "^10.0.1",
-		"@eslint/json": "^1.1.0",
+		"@eslint/json": "^2.0",
 		"@eslint/markdown": "^8.0",
 		"esbuild": "^0.28",
 		"eslint": "^10.0.3",
@@ -25,5 +25,8 @@
 	},
 	"scripts": {
 		"build": "esbuild src/*.js --bundle --minify --outfile=public/app.min.js"
+	},
+	"allowScripts": {
+		"esbuild@0.28.2": true
 	}
 }
