@@ -1,31 +1,23 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <phpunit
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd"
-	backupGlobals="true"
+	xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
 	backupStaticProperties="false"
-	cacheDirectory=".phpunit.cache"
-	cacheResult="false"
 	colors="true"
-	displayDetailsOnIncompleteTests="true"
-	displayDetailsOnSkippedTests="true"
+	displayDetailsOnPhpunitDeprecations="true"
 	displayDetailsOnTestsThatTriggerDeprecations="true"
 	displayDetailsOnTestsThatTriggerErrors="true"
 	displayDetailsOnTestsThatTriggerNotices="true"
 	displayDetailsOnTestsThatTriggerWarnings="true"
+	failOnDeprecation="true"
+	failOnRisky="true"
+	failOnWarning="true"
 	processIsolation="false"
-	requireCoverageMetadata="false"
+	recordTestRunHistory="false"
 	stopOnError="false"
 	stopOnFailure="false"
-	stopOnIncomplete="false"
-	stopOnSkipped="false"
-	stopOnRisky="false"
 	testdox="true"
-	timeoutForSmallTests="1"
-	timeoutForMediumTests="10"
-	timeoutForLargeTests="60"
-	>
-	<coverage/>
+>
 	<php>
 		<ini
 			name="display_errors"
