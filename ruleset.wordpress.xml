@@ -3,7 +3,7 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/WordPress-Coding-Standards/WordPress-Coding-Standards/refs/heads/develop/WordPress-Coding-Standards/ruleset.xsd">
 
-	<config name="minimum_supported_wp_version" value="4.5"/>
+	<config name="minimum_supported_wp_version" value="7.1"/>
 
 	<description>The set of WordPress code standard rules for Digital Zen Works.</description>
 

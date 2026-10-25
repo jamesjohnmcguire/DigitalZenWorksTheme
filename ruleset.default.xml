@@ -16,7 +16,7 @@
 	<arg name="parallel" value="8"/>
 
 	<!-- Set which version of PHP for compatibility checking. -->
-	<config name="testVersion" value="8.3-"/>
+	<config name="testVersion" value="8.5-"/>
 
 	<description>The set of default code standard rules for Digital Zen Works.</description>
 
