@@ -24,7 +24,7 @@
 		"globals": "^17.4.0"
 	},
 	"scripts": {
-		"build": "esbuild src/*.js --bundle --minify --outfile=public/app.min.js"
+		"build": "node DevelopmentTools/minify.js"
 	},
 	"allowScripts": {
 		"esbuild@0.28.2": true
