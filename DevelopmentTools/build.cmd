@@ -3,9 +3,9 @@
 CD %~dp0
 CD ..
 
-CALL composerStatus.cmd
+CALL DevelopmentTools\Common\Commands\composerStatus.cmd
 
-CALL npmStatus.cmd
+CALL DevelopmentTools\Common\Commands\npmStatus.cmd
 
 ECHO .
 ECHO Checking JavaScript...
