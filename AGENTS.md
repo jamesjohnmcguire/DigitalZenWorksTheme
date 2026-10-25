@@ -10,7 +10,8 @@ Run these from the repository root:
 
 - `composer install` and `npm ci`: install locked PHP and Node development dependencies.
 - `npm run build`: generate ignored minified CSS and JavaScript from the current theme assets.
-- `bash DevelopmentTools/build.sh` or `DevelopmentTools\build.cmd`: build assets and run PHPUnit.
+- `git submodule update --init`: fetch shared status scripts into `DevelopmentTools/Common` after cloning.
+- `bash DevelopmentTools/build.sh` or `DevelopmentTools\build.cmd`: install and audit dependencies, lint and minify assets, generate the POT file, run PHP analyzers, and run PHPUnit. The build stops when a check fails.
 - `composer test`: run the PHPUnit suite in `Tests/phpunit.xml`.
 - `npx eslint DevelopmentTools/minify.js`: lint the asset builder.
 - `php vendor/bin/phpstan analyse` and `php vendor/bin/phpcs --standard=ruleset.xml SourceCode`: run static analysis and PHP coding checks. Legacy theme code currently has findings in these checks.
