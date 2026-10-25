@@ -1,8 +1,7 @@
-#!/bin/bash
-set -euo pipefail   # strict mode
+#!/usr/bin/env bash
+set -euo pipefail
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
-cd ..
+cd -- "$(dirname -- "$0")/.."
 
 DevelopmentTools/Common/Commands/composerStatus.sh
 
@@ -15,6 +14,10 @@ npx eslint DevelopmentTools/minify.js
 echo
 echo -e "\e[36mMinifying assets...\e[0m"
 node DevelopmentTools/minify.js
+
+echo
+echo -e "\e[36mCreating language files...\e[0m"
+wp i18n make-pot SourceCode SourceCode/languages/digitalzen.pot
 
 echo
 echo -e "\e[36mChecking code syntax...\e[0m"
@@ -32,14 +35,3 @@ vendor/bin/phpcs -sp --standard=ruleset.tests.xml Tests
 echo
 echo -e "\e[36mRunning Automated Tests...\e[0m"
 vendor/bin/phpunit --configuration Tests/phpunit.xml
-
-if [[ $1 == "release" ]] ; then
-	echo "Release Is Set!"
-
-	# rm -rf Documentation
-	# phpDocumentor.phar --setting="graphs.enabled=true" -d SourceCode -t Documentation
-
-	zip -r digitalzenworks-inferret.zip SourceCode/themes/digitalzenworks-inferret
-	gh release create v$2 --notes $2 digitalzenworks-inferret.zip
-	rm digitalzenworks-inferret.zip
-fi

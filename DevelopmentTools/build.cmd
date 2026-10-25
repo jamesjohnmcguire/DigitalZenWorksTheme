@@ -1,88 +1,57 @@
 @ECHO OFF
+SETLOCAL
 
-CD %~dp0
-CD ..
+PUSHD "%~dp0.." || EXIT /B 1
 
 CALL DevelopmentTools\Common\Commands\composerStatus.cmd
+IF ERRORLEVEL 1 GOTO failed
 
 CALL DevelopmentTools\Common\Commands\npmStatus.cmd
+IF ERRORLEVEL 1 GOTO failed
 
 ECHO .
 ECHO Checking JavaScript...
 CALL npx eslint DevelopmentTools/minify.js
+IF ERRORLEVEL 1 GOTO failed
 
-IF "%2"=="update" GOTO update
-GOTO continue
-
-:update
-ECHO Updating version
-CALL VersionUpdate style.css
-CALL VersionUpdate style-rtl.css
-CALL VersionUpdate functions.php
-
-SET BootStrapVersion=5.3.5
-wget https://github.com/twbs/bootstrap/releases/download/v%BootStrapVersion%/bootstrap-%BootStrapVersion%-dist.zip
-
-7z x bootstrap-%BootStrapVersion%-dist.zip -o..\SourceCode\assets\Bootstrap\ -y >NUL 2>NUL
-
-MOVE /Y bootstrap-%BootStrapVersion%-dist\css\bootstrap.min.css assets\css\vendor
-MOVE /Y bootstrap-%BootStrapVersion%-dist\css\bootstrap.min.css.map assets\css\vendor
-MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js assets\js\vendor
-MOVE /Y bootstrap-%BootStrapVersion%-dist\js\bootstrap.bundle.min.js.map assets\js\vendor
-
-:continue
 ECHO .
 ECHO Minifying assets...
-node DevelopmentTools/minify.js
+CALL node DevelopmentTools/minify.js
+IF ERRORLEVEL 1 GOTO failed
 
 ECHO .
 ECHO Creating language files
-CD SourceCode
-CALL wp i18n make-pot . languages/digitalzen.pot
-CD ..
+CALL wp i18n make-pot SourceCode SourceCode/languages/digitalzen.pot
+IF ERRORLEVEL 1 GOTO failed
 
 ECHO .
 ECHO Checking syntax...
-CALL vendor\bin\parallel-lint --exclude .git --exclude vendor .
+CALL vendor\bin\parallel-lint.bat --exclude .git --exclude vendor .
+IF ERRORLEVEL 1 GOTO failed
 
 ECHO .
 ECHO Code Analysis...
 CALL vendor\bin\phpstan.phar.bat analyse
+IF ERRORLEVEL 1 GOTO failed
 
 ECHO .
 ECHO Checking code styles...
 CALL vendor\bin\phpcs.bat -sp --standard=ruleset.xml SourceCode
+IF ERRORLEVEL 1 GOTO failed
+
+ECHO .
 CALL vendor\bin\phpcs.bat -sp --standard=ruleset.tests.xml Tests
+IF ERRORLEVEL 1 GOTO failed
 
 ECHO .
 ECHO Running Automated Tests
-CALL vendor\bin\phpunit --configuration Tests\phpunit.xml
+CALL vendor\bin\phpunit.bat --configuration Tests\phpunit.xml
+IF ERRORLEVEL 1 GOTO failed
 
-IF "%1"=="deploy" GOTO deploy
-GOTO finish
+POPD
+EXIT /B 0
 
-:deploy
-CD SourceCode
-IF EXIST vendor.bak\NUL RD /S /Q vendor.bak
-IF EXIST vendor.production\NUL RD /S /Q vendor.production
-
-ECHO Backing up vendor
-XCOPY /C /D /E /H /I /R /S /Y vendor vendor.bak >NUL
-
-ECHO Installing vendor no dev
-CALL composer install --no-dev --prefer-dist
-@ECHO ON
-
-CD vendor
-
-DEL /S /Q *.md >NUL 2>NUL
-CD ..
-
-IF EXIST DigitalZenTheme.zip DEL /Q DigitalZenTheme.zip
-
-7z a DigitalZenTheme.zip . -xr!.editorconfig -xr!.eslintrc -xr!.stylelintrc.json -xr!composer.* -xr!Gruntfile.js -xr!package.* -xr!package-lock.* -xr!ruleset.xml -xr!DevelopmentTools -x!node_modules -x!vendor.bak
-
-REN vendor vendor.production
-REN vendor.bak vendor
-
-:finish
+:failed
+SET "exitCode=%ERRORLEVEL%"
+POPD
+EXIT /B %exitCode%
