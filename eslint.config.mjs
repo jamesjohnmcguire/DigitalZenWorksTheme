@@ -62,7 +62,7 @@ const jstFiles =
 const mdFiles =
 {
 	files: ["**/*.md"],
-	...markdown.configs.recommended,
+	...markdown.configs.recommended[0],
 	plugins: { markdown },
 	language: "markdown/gfm"
 };
@@ -82,7 +82,7 @@ const ignores =
 
 const defineConfig =
 [
-	js.configs.recommended,
+	{ ...js.configs.recommended, files: ["**/*.{js,mjs,cjs}"] },
 	cssFiles,
 	jsonFiles,
 	jsoncFiles,
