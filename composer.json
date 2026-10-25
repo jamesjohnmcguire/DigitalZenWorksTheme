@@ -29,7 +29,7 @@
 		"pdepend/pdepend": "^3.0",
 		"php-parallel-lint/php-console-highlighter": "^1.0",
 		"php-parallel-lint/php-parallel-lint": "^1.2.0",
-		"php-stubs/wordpress-stubs": "^6.8",
+		"php-stubs/wordpress-stubs": "^7.1",
 		"phpcompatibility/php-compatibility": "*",
 		"phpcompatibility/phpcompatibility-wp": "*",
 		"phpcsstandards/phpcsdevtools": "^1.0",
