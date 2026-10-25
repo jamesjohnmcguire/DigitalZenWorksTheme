@@ -1,0 +1,3 @@
+[submodule "DevelopmentTools/Common"]
+	path = DevelopmentTools/Common
+	url = https://github.com/jamesjohnmcguire/DevelopmentTools.git
