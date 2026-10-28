@@ -2,6 +2,7 @@
 /node_modules/
 /vendor/
 
+/session-*.md
 /DigitalZenTheme.code-workspace
 
 /SourceCode/languages/
